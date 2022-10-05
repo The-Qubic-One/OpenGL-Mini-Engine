@@ -1,0 +1,9 @@
+target_sources(${PROJECT_NAME} PUBLIC
+
+${CMAKE_CURRENT_SOURCE_DIR}/BufferObject.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Program.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Shader.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Texture2D.cpp
+${CMAKE_CURRENT_SOURCE_DIR}/Vao.cpp
+
+)
