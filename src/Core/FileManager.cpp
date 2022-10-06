@@ -47,12 +47,10 @@ void FileManager::createDir(const path_t& path) const {
     std::filesystem::create_directories(path);
 }
 
+// File Tests
+
 bool FileManager::fileExists(const path_t& path) const {
-    std::error_code ec;
-    std::filesystem::exists(path, ec);
-    if (ec.value() == 0)
-        return true;
-    else return false;
+    return std::filesystem::exists(path);
 }
 
 // Textures

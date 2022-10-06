@@ -20,6 +20,8 @@ public:
     // Directories
     bool dirExists(const path_t& path) const;
     void createDir(const path_t& path) const;
+
+    // File Tests
     bool fileExists(const path_t& path) const;
 
     // Textures
