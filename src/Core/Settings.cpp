@@ -20,10 +20,6 @@ tree_t Settings::getTree() const {
     return dataTree;
 }
 
-bool Settings::wasChanged() const {
-    return changed;
-}
-
 /*
     [general]
     version="0.0"
@@ -37,6 +33,4 @@ void Settings::reset() {
 
     dataTree.put("general.version", "0.0");
     dataTree.put("general.version", "gray");
-    
-    changed = false;
 }

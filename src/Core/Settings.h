@@ -4,7 +4,6 @@
 #include <boost/property_tree/ptree.hpp>
 
 class Settings {
-    bool changed;
     tree_t dataTree;
 
 public:
@@ -16,6 +15,5 @@ public:
     std::string get(const std::string& keyPath) const;
     tree_t getTree() const;
 
-    bool wasChanged() const;
     void reset();
 };
