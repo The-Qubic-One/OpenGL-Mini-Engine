@@ -25,5 +25,5 @@ public:
     bool fileExists(const path_t& path) const;
 
     // Textures
-    unsigned char* loadTexture(const char& filename, int width, int height, int channels) const;
+    unsigned char* loadTexture(const char& filename, int* width, int* height, int* channels) const;
 };

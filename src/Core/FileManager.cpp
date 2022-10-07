@@ -55,6 +55,6 @@ bool FileManager::fileExists(const path_t& path) const {
 
 // Textures
 
-unsigned char* FileManager::loadTexture(const char& filename, int width, int height, int channels) const {
-    return stbi_load(&filename, &width, &height, &channels, 0);
+unsigned char* FileManager::loadTexture(const char& filename, int* width, int* height, int* channels) const {
+    return stbi_load(&filename, width, height, channels, 0);
 }
