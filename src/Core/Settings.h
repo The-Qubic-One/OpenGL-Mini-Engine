@@ -10,9 +10,9 @@ public:
     Settings();
 
     void set(const std::string& key, const std::string& value);
-    void setFromTree(const tree_t& data);
-
     std::string get(const std::string& keyPath) const;
+
+    void setFromTree(const tree_t& data);
     tree_t getTree() const;
 
     bool isComplete() const;

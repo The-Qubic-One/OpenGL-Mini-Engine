@@ -6,15 +6,15 @@ Settings::Settings() {
 }
 
 void Settings::set(const std::string& key, const std::string& value) {
-    
-}
-
-void Settings::setFromTree(const tree_t& data) {
-    dataTree = data;
+    dataTree.put(key, value);
 }
 
 std::string Settings::get(const std::string& keyPath) const {
     return dataTree.get<std::string>(keyPath);
+}
+
+void Settings::setFromTree(const tree_t& data) {
+    dataTree = data;
 }
 
 tree_t Settings::getTree() const {

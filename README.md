@@ -8,5 +8,4 @@ Boost 1.80.0
 
 
 # TO DO
-fix the fileExists() method
-add settings feature
+add default settings resource / header file
