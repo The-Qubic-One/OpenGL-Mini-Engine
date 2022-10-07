@@ -15,5 +15,6 @@ public:
     std::string get(const std::string& keyPath) const;
     tree_t getTree() const;
 
+    bool isComplete() const;
     void reset();
 };

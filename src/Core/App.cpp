@@ -38,7 +38,14 @@ void App::init() {
     // SETTINGS
     settings.reset();
     if (fileManager.fileExists(appdata / "settings.ini")) {
-        settings.setFromTree(fileManager.readIniFile(appdata / "settings.ini"));
+        try {
+            settings.setFromTree(fileManager.readIniFile(appdata / "settings.ini"));
+            if(!settings.isComplete())
+                settings.reset();
+        }
+        catch(const std::exception& e) {
+            logger.log(e.what());
+        }
     }
 }
 
