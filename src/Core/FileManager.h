@@ -7,7 +7,7 @@
 
 struct TextureData {
     int width, height, channels;
-    const char* data;
+    const unsigned char* data;
 
     ~TextureData();
 };

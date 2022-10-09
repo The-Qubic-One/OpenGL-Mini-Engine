@@ -57,7 +57,7 @@ bool FileManager::fileExists(const path_t& path) const {
 
 TextureData FileManager::loadTextureData(const char& filename) const {
     TextureData tex;
-    tex.data = (&filename, &(tex.width), &(tex.height), &(tex.channels), 0);
+    tex.data = stbi_load(&filename, &(tex.width), &(tex.height), &(tex.channels), 0);
     return tex;
 }
 
