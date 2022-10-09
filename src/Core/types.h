@@ -9,7 +9,7 @@
 // FILES AND DIRECTORIES
 #define LOG_FILENAME "log.txt"
 #define SETTINGS_FILENAME "settings.ini"
-#define APPDATA_DIRNAME "OpenGL_Mini_Engine"
+#define APPDATA_DIRNAME "OpenGL Mini Engine"
 
 // WINDOW
 #define WINDOW_WIDTH 800
