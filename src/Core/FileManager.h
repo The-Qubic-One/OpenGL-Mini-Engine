@@ -7,9 +7,9 @@
 
 struct TextureData {
     int width, height, channels;
-    const unsigned char* data;
+    unsigned char* data;
 
-    ~TextureData();
+    void destroy();
 };
 
 class FileManager {
@@ -32,5 +32,5 @@ public:
     bool fileExists(const path_t& path) const;
 
     // Textures
-    TextureData loadTextureData(const char& filename) const;
+    TextureData loadTextureData(const char* filename) const;
 };

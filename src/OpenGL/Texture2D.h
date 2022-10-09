@@ -16,7 +16,6 @@ public:
     void unbind();
     
     void setParameter(glint key, glint val);
-    void setParameter(glint key, float val);
 
-    void data(unsigned char* data, glint width, glint height, glint channels);
+    void data(unsigned char* data, glint width, glint height);
 };

@@ -13,8 +13,8 @@ public:
     Settings settings;
     FileManager fileManager; // -> logger
 
-    void init();
-    ~App();
+    void initialize();
+    void terminate();
 
     GLFWwindow* getWindow() const;
     bool shouldClose() const;

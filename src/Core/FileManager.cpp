@@ -55,12 +55,17 @@ bool FileManager::fileExists(const path_t& path) const {
 
 // Textures
 
-TextureData FileManager::loadTextureData(const char& filename) const {
+TextureData FileManager::loadTextureData(const char* filename) const {
     TextureData tex;
-    tex.data = stbi_load(&filename, &(tex.width), &(tex.height), &(tex.channels), 0);
+    int width, height, channels;
+    tex.data = stbi_load(filename, &width, &height, &channels, 0);
+
+    tex.width = width;
+    tex.height = height;
+    tex.channels = channels;
     return tex;
 }
 
-TextureData::~TextureData() {
-    stbi_image_free(&data);
+void TextureData::destroy() {
+    stbi_image_free(data);
 }

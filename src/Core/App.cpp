@@ -4,7 +4,7 @@
 #include "types.h"
 #include <iostream>
 
-void App::init() {
+void App::initialize() {
     // GLFW
     if (glfwInit() == GL_FALSE) {
         logger.log("Failed to initialize GLFW");
@@ -49,9 +49,9 @@ void App::init() {
     }
 }
 
-App::~App() {
+void App::terminate() {
     glfwTerminate();
-    
+
     path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
     if(!logger.empty())
         fileManager.appendTextFile(appdata / "log.txt", logger.pullLogs());

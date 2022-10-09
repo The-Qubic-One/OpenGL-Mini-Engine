@@ -25,17 +25,12 @@ void Texture2D::setParameter(glint key, glint val) {
     glTexParameteri(GL_TEXTURE_2D, key, val);
 }
 
-void Texture2D::setParameter(glint key, float val) {
-    glTexParameteri(GL_TEXTURE_2D, key, val);
-}
-
 // Setup
 
-void Texture2D::data(unsigned char* data, glint width, glint height, glint channels) {
+void Texture2D::data(unsigned char* data, glint width, glint height) {
     this->width = width;
     this->height = height;
-    this->channels = channels;
-    
+
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
 }
