@@ -6,13 +6,17 @@ class Texture2D
 {
 private:
     glint id = 0;
-    glint wrap_s, wrap_t, min_filter, mag_filter;   //parameters - fixed for now
-    glint width, height;
+    glint width, height, channels;
 
 public:
     Texture2D();
     ~Texture2D();
+
     void bind();
     void unbind();
-    void setParameters();
+    
+    void setParameter(glint key, glint val);
+    void setParameter(glint key, float val);
+
+    void data(unsigned char* data, glint width, glint height, glint channels);
 };

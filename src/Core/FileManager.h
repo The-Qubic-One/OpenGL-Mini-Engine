@@ -5,6 +5,13 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 
+struct TextureData {
+    int width, height, channels;
+    const char* data;
+
+    ~TextureData();
+};
+
 class FileManager {
 public:
 
@@ -25,5 +32,5 @@ public:
     bool fileExists(const path_t& path) const;
 
     // Textures
-    unsigned char* loadTexture(const char& filename, int* width, int* height, int* channels) const;
+    TextureData loadTextureData(const char& filename) const;
 };
