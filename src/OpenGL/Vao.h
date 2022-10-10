@@ -6,7 +6,7 @@
 class Vao
 {
     glint id = 0;
-    std::vector<int> attribNum;
+    std::vector<glint> atb_len, atb_type, atb_size;
 
 public:
     Vao();
@@ -16,6 +16,6 @@ public:
     void bind();
     void unbind();
 
-    void queueAttribf(int componentNo);
+    void queueAttrib(glint type, int n);
     void setAttribs();
 };

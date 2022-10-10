@@ -1,5 +1,4 @@
 #include <glad/glad.h>
-//#include <GLFW/glfw3.h>
 #include <iostream>
 
 #include "Core/App.h"
@@ -20,23 +19,6 @@ unsigned int indices[] = {  // note that we start from 0!
     0, 1, 3,  // first Triangle
     1, 2, 3   // second Triangle
 };
-
-/*
-    rendering requirements:
-
-    program
-        shaders
-            src
-            uniforms
-                name
-                value
-    VAO
-        vbo
-        ebo
-        list of attributes
-            type
-            n of variables
-*/
 
 int main()
 {
@@ -72,6 +54,21 @@ int main()
         tex.unbind();
         tdata.destroy();
 
+        // TEXTURE 2
+        Texture2D tex2;
+        TextureData tdata2 = app.fileManager.loadTextureData("resources/textures/awesomeface.png");
+        tex2.bind();
+
+        tex2.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
+        tex2.setParameter(GL_TEXTURE_WRAP_T, GL_REPEAT);
+        tex2.setParameter(GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        tex2.setParameter(GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        
+        tex2.data(tdata2.data, tdata2.width, tdata2.height, GL_RGBA);
+
+        tex2.unbind();
+        tdata2.destroy();
+
         // VAO
 
         BufferObject vbo(GL_ARRAY_BUFFER), ebo(GL_ELEMENT_ARRAY_BUFFER);
@@ -84,9 +81,9 @@ int main()
         vbo.data(sizeof(vertices), vertices, GL_STATIC_DRAW);
         ebo.data(sizeof(indices), indices, GL_STATIC_DRAW);
 
-        vao.queueAttribf(3);
-        vao.queueAttribf(3);
-        vao.queueAttribf(2);
+        vao.queueAttrib(GL_FLOAT, 3);
+        vao.queueAttrib(GL_FLOAT, 3);
+        vao.queueAttrib(GL_FLOAT, 2);
         vao.setAttribs();
 
         // note that this is allowed, the call to glVertexAttribPointer registered VBO as the vertex attribute's bound vertex buffer object so afterwards we can safely unbind
@@ -99,33 +96,27 @@ int main()
         // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
         vao.unbind();
 
-        // uncomment this call to draw in wireframe polygons.
-        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        // RENDERING LOOP
+        program.use();
+        program.setUniform1i("texture1", 0);
+        program.setUniform1i("texture2", 1);
 
         while (!app.shouldClose())
         {
             app.startFrame();
 
-            // draw our first triangle
-            program.use(); // glUseProgram(program.getId());
-
-            /*
-            float timeValue = (float)glfwGetTime();
-            float greenValue = sin(timeValue) / 2.0f + 0.5f;
-
-            program.setUniform4f("ourColor", 0.0f, greenValue, 0.0f, 1.0f);
-            */
-
+            Texture2D::activateUnit(0);
             tex.bind();
-            vao.bind(); // seeing as we only have a single VAO there's no need to bind it every time, but we'll do so to keep things a bit more organized
-            //glDrawArrays(GL_TRIANGLES, 0, 6);
+            Texture2D::activateUnit(1);
+            tex2.bind();
+
+            program.use();
+            vao.bind();
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-            // vao.unbind(); // no need to unbind it every time 
 
             app.endFrame();
         }
-
-        app.terminate();
+        app.terminate();    // for some reason won't work if taken out of try-catch
     }
     catch(const std::exception& e)
     {

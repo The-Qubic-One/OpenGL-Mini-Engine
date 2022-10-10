@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/types.h"
 #include <cstdint>
+#include <glad/glad.h>
 
 class Texture2D
 {
@@ -13,9 +14,10 @@ public:
     ~Texture2D();
 
     void bind();
+    static void activateUnit(unsigned int index);
     void unbind();
     
     void setParameter(glint key, glint val);
 
-    void data(unsigned char* data, glint width, glint height);
+    void data(unsigned char* data, glint width, glint height, glint channels = GL_RGB);
 };

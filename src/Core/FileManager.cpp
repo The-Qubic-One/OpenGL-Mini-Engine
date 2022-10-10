@@ -2,6 +2,12 @@
 #include <fstream>
 #include <stb_image/stb_image.h>
 #include "util.h"
+#include <stdexcept>
+#include <string>
+
+FileManager::FileManager() {
+    stbi_set_flip_vertically_on_load(true);
+}
 
 // Files
 
@@ -59,6 +65,9 @@ TextureData FileManager::loadTextureData(const char* filename) const {
     TextureData tex;
     int width, height, channels;
     tex.data = stbi_load(filename, &width, &height, &channels, 0);
+
+    if (!tex.data)
+        throw std::runtime_error("Unable to load texture: " + std::string(filename));
 
     tex.width = width;
     tex.height = height;

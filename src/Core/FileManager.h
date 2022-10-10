@@ -15,6 +15,8 @@ struct TextureData {
 class FileManager {
 public:
 
+    FileManager();
+
     // Text Files
     std::string readTextFile(const path_t& path) const;
     void writeTextFile(const path_t& path, const std::string& text) const;
