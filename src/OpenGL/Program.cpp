@@ -1,6 +1,7 @@
 #include "Program.h"
 #include <glad/glad.h>
 #include <exception>
+#include <glm/gtc/type_ptr.hpp>
 
 Program::Program(glint vertex, glint fragment) {
     id = glCreateProgram();
@@ -51,4 +52,8 @@ void Program::setUniform4f(const char* name, const float& value1, const float& v
 
 void Program::setUniform1i(const char* name, const int& value) {
     glUniform1i(glGetUniformLocation(id, name), value);
+}
+
+void Program::setUniformMat4f(const char* name, glm::mat4 value) {
+    glUniformMatrix4fv(glGetUniformLocation(id, name), 1, GL_FALSE, glm::value_ptr(value));
 }

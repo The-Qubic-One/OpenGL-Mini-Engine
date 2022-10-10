@@ -8,6 +8,10 @@
 #include "OpenGL/Vao.h"
 #include "OpenGL/Texture2D.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 float vertices[] = {
     // positions          // colors           // texture coords
      0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
@@ -96,6 +100,10 @@ int main()
         // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
         vao.unbind();
 
+
+        //  TRANSFORM
+        glm::mat4 trans(1.0f);
+
         // RENDERING LOOP
         program.use();
         program.setUniform1i("texture1", 0);
@@ -109,6 +117,11 @@ int main()
             tex.bind();
             Texture2D::activateUnit(1);
             tex2.bind();
+
+            program.setUniformMat4f("transform", trans);
+            //trans = glm::translate(trans, glm::vec3(0.0f, 0.0001f, 0.0f));
+            trans = glm::rotate(trans, 0.001f, glm::vec3(0.0f, 0.0f, -1.0f));
+
 
             program.use();
             vao.bind();
