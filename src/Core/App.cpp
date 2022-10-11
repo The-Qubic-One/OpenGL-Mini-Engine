@@ -30,6 +30,9 @@ void App::initialize() {
         exit(EXIT_FAILURE);
     }
 
+    // ADDITIONAL
+    glEnable(GL_DEPTH_TEST);
+
     // APPDATA FOLDER
     path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
     if(!fileManager.dirExists(appdata))
@@ -69,7 +72,7 @@ bool App::shouldClose() const {
 void App::startFrame() {
     processInput(window);
     glClearColor(BG_COLOR);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void App::endFrame() {

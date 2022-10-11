@@ -13,15 +13,47 @@
 #include <glm/gtc/type_ptr.hpp>
 
 float vertices[] = {
-    // positions          // colors           // texture coords
-     0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // top right
-     0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // bottom right
-    -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // bottom left
-    -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // top left 
-};
-unsigned int indices[] = {  // note that we start from 0!
-    0, 1, 3,  // first Triangle
-    1, 2, 3   // second Triangle
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
+     0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+     0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+    -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
+    -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
 };
 
 int main()
@@ -33,9 +65,7 @@ int main()
 
         // PROGRAM
         
-        Shader vertex(GL_VERTEX_SHADER);
-        Shader fragment(GL_FRAGMENT_SHADER);
-
+        Shader vertex(GL_VERTEX_SHADER), fragment(GL_FRAGMENT_SHADER);
         vertex.source(app.fileManager.readTextFile("resources/shaders/vertex.shader"));
         fragment.source(app.fileManager.readTextFile("resources/shaders/fragment.shader"));
 
@@ -80,12 +110,11 @@ int main()
 
         vao.bind();
         vbo.bind();
-        ebo.bind();
+        //ebo.bind();
 
         vbo.data(sizeof(vertices), vertices, GL_STATIC_DRAW);
-        ebo.data(sizeof(indices), indices, GL_STATIC_DRAW);
+        //ebo.data(sizeof(indices), indices, GL_STATIC_DRAW);
 
-        vao.queueAttrib(GL_FLOAT, 3);
         vao.queueAttrib(GL_FLOAT, 3);
         vao.queueAttrib(GL_FLOAT, 2);
         vao.setAttribs();
@@ -102,30 +131,36 @@ int main()
 
 
         //  TRANSFORM
-        glm::mat4 trans(1.0f);
+        glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f)); 
+        glm::mat4 view = glm::mat4(1.0f);
+        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f)); 
+        glm::mat4 proj = glm::perspective(glm::radians(50.0f), (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 100.0f);
 
         // RENDERING LOOP
         program.use();
         program.setUniform1i("texture1", 0);
         program.setUniform1i("texture2", 1);
+        program.setUniformMat4f("model", model);
+        program.setUniformMat4f("view", view);
+        program.setUniformMat4f("projection", proj);
 
         while (!app.shouldClose())
         {
             app.startFrame();
+
+            model = glm::rotate(model, glm::radians(0.1f), glm::vec3(0.0f,0.0f,1.0f));
+            program.setUniformMat4f("model", model);
 
             Texture2D::activateUnit(0);
             tex.bind();
             Texture2D::activateUnit(1);
             tex2.bind();
 
-            program.setUniformMat4f("transform", trans);
-            //trans = glm::translate(trans, glm::vec3(0.0f, 0.0001f, 0.0f));
-            trans = glm::rotate(trans, 0.001f, glm::vec3(0.0f, 0.0f, -1.0f));
-
-
             program.use();
             vao.bind();
-            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
 
             app.endFrame();
         }
