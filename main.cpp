@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Core/App.h"
+
 #include "OpenGL/Shader.h"
 #include "OpenGL/Program.h"
 #include "OpenGL/BufferObject.h"
@@ -105,15 +106,13 @@ int main()
 
         // VAO
 
-        BufferObject vbo(GL_ARRAY_BUFFER), ebo(GL_ELEMENT_ARRAY_BUFFER);
+        Vbo vbo;
         Vao vao;
 
         vao.bind();
         vbo.bind();
-        //ebo.bind();
 
         vbo.data(sizeof(vertices), vertices, GL_STATIC_DRAW);
-        //ebo.data(sizeof(indices), indices, GL_STATIC_DRAW);
 
         vao.queueAttrib(GL_FLOAT, 3);
         vao.queueAttrib(GL_FLOAT, 2);

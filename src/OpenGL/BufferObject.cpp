@@ -17,6 +17,8 @@ glint BufferObject::getType() {
     return type;
 }
 
+// Binding
+
 void BufferObject::bind() {
     glBindBuffer(type, id);
 }
@@ -25,8 +27,7 @@ void BufferObject::unbind() {
     glBindBuffer(type, 0);
 }
 
+
 void BufferObject::data(unsigned int size, const void* data, unsigned int usage) {
-    bind();
     glBufferData(type, size, data, usage);
-    unbind();
 }

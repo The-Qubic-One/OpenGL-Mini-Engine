@@ -37,7 +37,7 @@ void Vao::queueAttrib(glint type, int quantity) {
     atb_len.push_back(quantity);
     atb_type.push_back(type);
     atb_size.push_back(quantity * gl_to_size[type]);
-};
+}
 
 void Vao::setAttribs() {
     int stride = std::accumulate(atb_size.begin(), atb_size.end(), 0);
