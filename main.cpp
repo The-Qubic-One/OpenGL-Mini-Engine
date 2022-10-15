@@ -9,6 +9,8 @@
 #include "OpenGL/Vao.h"
 #include "OpenGL/Texture2D.h"
 
+#include "ImGui/imgui.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -59,10 +61,22 @@ float vertices[] = {
 
 int main()
 {
+
+
+
     App app;
     try
     {
         app.initialize();
+
+        char* buf;
+        float f;
+
+        ImGui::Text("Hello, world %d", 123);
+        if (ImGui::Button("Save"))
+            std::cout<<"lol!\n";
+        ImGui::InputText("string", buf, IM_ARRAYSIZE(buf));
+        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
 
         // PROGRAM
         

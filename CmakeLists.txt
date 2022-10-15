@@ -10,6 +10,7 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 include_directories(vendor/include src)
 add_subdirectory(src/Core)
 add_subdirectory(src/OpenGL)
+add_subdirectory(src/ImGui)
 
 # glfw3
 add_library(GLFW3 STATIC IMPORTED GLOBAL)

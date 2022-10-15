@@ -3,6 +3,22 @@
 #include "util.h"
 #include "types.h"
 #include <iostream>
+#include <string>
+
+//  GLFW Callbacks
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+    glViewport(0, 0, width, height);
+}
+
+void processInput(GLFWwindow* window) {
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
+void glfw_error_callback(int error, const char *description) {
+    std::cerr << "GLFW Error " + std::to_string(error) + ": " + std::string(description);
+}
 
 void App::initialize() {
     // GLFW
@@ -23,6 +39,7 @@ void App::initialize() {
     }
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetErrorCallback(glfw_error_callback);
 
     //  GLAD
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
