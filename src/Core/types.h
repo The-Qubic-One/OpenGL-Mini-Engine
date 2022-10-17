@@ -6,6 +6,8 @@
 #define VERSION_MINOR 0
 #define VERSION_PATCH 0
 
+#define GLSL_VERSION "#version 330 core"
+
 // FILES AND DIRECTORIES
 #define LOG_FILENAME "log.txt"
 #define SETTINGS_FILENAME "settings.ini"
