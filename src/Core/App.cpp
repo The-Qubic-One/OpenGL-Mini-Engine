@@ -4,6 +4,9 @@
 #include "types.h"
 #include <iostream>
 #include <string>
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_glfw.h"
+#include "ImGui/imgui_impl_opengl3.h"
 
 //  GLFW Callbacks
 
@@ -50,6 +53,15 @@ void App::initialize() {
     // ADDITIONAL
     glEnable(GL_DEPTH_TEST);
 
+    // IMGUI
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGui::StyleColorsDark();
+
+    ImGui_ImplGlfw_InitForOpenGL(window, true);
+    ImGui_ImplOpenGL3_Init(GLSL_VERSION);
+
     // APPDATA FOLDER
     path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
     if(!fileManager.dirExists(appdata))
@@ -70,6 +82,10 @@ void App::initialize() {
 }
 
 void App::terminate() {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplGlfw_Shutdown();
+    ImGui::DestroyContext();
+
     glfwTerminate();
 
     path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
@@ -88,11 +104,18 @@ bool App::shouldClose() const {
 
 void App::startFrame() {
     processInput(window);
+
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
+    
     glClearColor(BG_COLOR);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void App::endFrame() {
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
     glfwSwapBuffers(window);
     glfwPollEvents();
 }

@@ -61,22 +61,10 @@ float vertices[] = {
 
 int main()
 {
-
-
-
     App app;
     try
     {
         app.initialize();
-
-        char* buf;
-        float f;
-
-        ImGui::Text("Hello, world %d", 123);
-        if (ImGui::Button("Save"))
-            std::cout<<"lol!\n";
-        ImGui::InputText("string", buf, IM_ARRAYSIZE(buf));
-        ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
 
         // PROGRAM
         
@@ -174,6 +162,10 @@ int main()
             program.use();
             vao.bind();
             glDrawArrays(GL_TRIANGLES, 0, 36);
+
+            //crashes app
+            bool yes = true;
+            ImGui::ShowDemoWindow(&yes);
 
             app.endFrame();
         }
