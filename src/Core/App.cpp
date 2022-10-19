@@ -8,6 +8,21 @@
 #include "ImGui/imgui_impl_glfw.h"
 #include "ImGui/imgui_impl_opengl3.h"
 
+void App::displayPerformanceWindow() {
+    ImGuiWindowFlags window_flags = 0;
+    window_flags |= ImGuiWindowFlags_NoTitleBar;
+    window_flags |= ImGuiWindowFlags_NoBackground;
+    window_flags |= ImGuiWindowFlags_AlwaysAutoResize;
+    window_flags |= ImGuiWindowFlags_NoInputs;
+    window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus;
+    bool p_open = true;
+
+    ImGui::SetNextWindowPos(ImVec2(0, 0));
+    ImGui::Begin("Performance", &p_open, window_flags);
+    ImGui::Text("%.3f ms\n%.1f FPS", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+    ImGui::End();
+}
+
 //  GLFW Callbacks
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -59,6 +74,7 @@ void App::initialize() {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui::StyleColorsDark();
 
+
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
@@ -66,6 +82,12 @@ void App::initialize() {
     path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
     if(!fileManager.dirExists(appdata))
         fileManager.createDir(appdata);
+
+    imgui_settings = (appdata / IMGUI_SETTINGS_FILENAME).string();
+    imgui_log = (appdata / IMGUI_LOG_FILENAME).string().c_str();
+
+    io.IniFilename = imgui_settings.c_str();
+    io.LogFilename = imgui_log.c_str();
 
     // SETTINGS
     settings.reset();
@@ -109,8 +131,12 @@ void App::startFrame() {
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
     
-    glClearColor(BG_COLOR);
+    //glClearColor(BG_COLOR);
+    glClearColor(bg_color[0], bg_color[1], bg_color[2], 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (displayDiagnostics)
+        displayPerformanceWindow();
 }
 
 void App::endFrame() {

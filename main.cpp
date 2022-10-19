@@ -62,6 +62,7 @@ float vertices[] = {
 int main()
 {
     App app;
+
     try
     {
         app.initialize();
@@ -130,7 +131,6 @@ int main()
         // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
         vao.unbind();
 
-
         //  TRANSFORM
         glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
         glm::mat4 model = glm::mat4(1.0f);
@@ -146,12 +146,14 @@ int main()
         program.setUniformMat4f("model", model);
         program.setUniformMat4f("view", view);
         program.setUniformMat4f("projection", proj);
+        
+        float rot_speed = 0.1f;
 
         while (!app.shouldClose())
-        {
+        {   
             app.startFrame();
 
-            model = glm::rotate(model, glm::radians(0.1f), glm::vec3(0.0f,0.0f,1.0f));
+            model = glm::rotate(model, glm::radians(rot_speed * 200.0f * ImGui::GetIO().DeltaTime), glm::vec3(0.0f,0.0f,1.0f));
             program.setUniformMat4f("model", model);
 
             Texture2D::activateUnit(0);
@@ -163,9 +165,13 @@ int main()
             vao.bind();
             glDrawArrays(GL_TRIANGLES, 0, 36);
 
-            //crashes app
-            bool yes = true;
-            ImGui::ShowDemoWindow(&yes);
+            {
+                ImGui::Begin("Specs");
+                ImGui::SliderFloat("rotation speed", &rot_speed, -5.0f, 5.0f);
+                if(ImGui::Button("reset"))  rot_speed = 0.0f;
+                ImGui::ColorEdit3("clear color", (float*)&(app.bg_color));
+                ImGui::End();
+            }
 
             app.endFrame();
         }

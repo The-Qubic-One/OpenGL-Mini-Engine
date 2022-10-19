@@ -12,8 +12,14 @@ void glfw_error_callback(int error, const char *description);
 class App
 {
     GLFWwindow* window;
+    std::string imgui_log;
+    std::string imgui_settings;
 
+    void displayPerformanceWindow();
 public:
+    float bg_color[3] = {BG_COLOR};
+    bool displayDiagnostics = true;
+
     Logger logger; // -> nothing :D
     Settings settings;
     FileManager fileManager; // -> logger

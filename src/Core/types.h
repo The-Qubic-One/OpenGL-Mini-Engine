@@ -11,13 +11,15 @@
 // FILES AND DIRECTORIES
 #define LOG_FILENAME "log.txt"
 #define SETTINGS_FILENAME "settings.ini"
+#define IMGUI_LOG_FILENAME "imgui_log.txt"
+#define IMGUI_SETTINGS_FILENAME "imgui.ini"
 #define APPDATA_DIRNAME "OpenGL Mini Engine"
 
 // WINDOW
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 #define WINDOW_TITLE "OpenGL Mini Graphics Engine"
-#define BG_COLOR 0.2f, 0.3f, 0.3f, 1.0f
+#define BG_COLOR 0.2f, 0.3f, 0.3f
 
 // TYPES
 #define glint uint32_t
