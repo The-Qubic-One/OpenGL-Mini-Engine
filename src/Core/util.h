@@ -6,3 +6,4 @@
 
 std::string getTimeAndDate();
 path_t getAppDataPath();
+float deltaTime();

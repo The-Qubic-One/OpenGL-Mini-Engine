@@ -2,6 +2,7 @@
 #include "util.h"
 #include <chrono>
 #include <shlobj_core.h>
+#include "ImGui/imgui.h"
 
 std::string getTimeAndDate() {
     auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
@@ -25,4 +26,8 @@ path_t getAppDataPath() {
     wchar_t* path;
     SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &path);
     return path_t(path);
+}
+
+float deltaTime() { // bottleneck?
+    return ImGui::GetIO().DeltaTime;
 }
