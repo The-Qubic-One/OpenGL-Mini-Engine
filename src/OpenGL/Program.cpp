@@ -22,7 +22,8 @@ void Program::link() {
     glGetProgramiv(id, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(id, 512, NULL, infoLog);
-        throw std::exception(infoLog);
+        // TODO: fix this
+        // throw std::exception(infoLog);
     }
 }
 

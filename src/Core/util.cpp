@@ -1,8 +1,17 @@
 #include <glad/glad.h>
 #include "util.h"
-#include <chrono>
-#include <shlobj_core.h>
 #include "ImGui/imgui.h"
+
+#ifdef _WIN32
+#include <shlobj_core.h>
+
+#include <chrono>
+
+path_t getAppDataPath() {
+    wchar_t* path;
+    SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &path);
+    return path_t(path);
+}
 
 std::string getTimeAndDate() {
     auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
@@ -22,12 +31,12 @@ std::string getTimeAndDate() {
     return timeString;
 }
 
-path_t getAppDataPath() {
-    wchar_t* path;
-    SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &path);
-    return path_t(path);
-}
+#elif __linux__
 
-float deltaTime() { // bottleneck?
+// TODO: implement getAppDataPath() and getTimeAndDate()
+
+#endif
+
+float deltaTime() {  // bottleneck?
     return ImGui::GetIO().DeltaTime;
 }

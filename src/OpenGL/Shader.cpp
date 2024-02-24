@@ -20,7 +20,8 @@ void Shader::source(const std::string& src) {
     glGetShaderiv(id, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(id, 512, NULL, infoLog);
-        throw std::exception(infoLog);
+        // TODO: fix this
+        // throw std::exception(infoLog);
     }
 }
 

@@ -1,21 +1,22 @@
 #pragma once
+#include <filesystem>
 #include "Core/types.h"
 #include <cstdint>
 #include <glad/glad.h>
 
 class BufferObject
 {
-protected:
+   protected:
     glint id = 0;
     glint type;
 
-public:
+   public:
     BufferObject(glint type);
     ~BufferObject();
 
     glint getId();
     glint getType();
-    
+
     void bind();
     void unbind();
 
@@ -28,11 +29,11 @@ public:
 };
 
 class Vbo : public BufferObject {
-public:
+   public:
     Vbo() : BufferObject(GL_ARRAY_BUFFER) {};
 };
 
 class Ebo : public BufferObject {
-public:
+   public:
     Ebo() : BufferObject(GL_ELEMENT_ARRAY_BUFFER) {};
 };
