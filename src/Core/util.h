@@ -4,6 +4,6 @@
 #include <filesystem>
 #include "types.h"
 
-std::string getTimeAndDate();
-path_t getAppDataPath();
+std::string getTimestamp();
+path_t getDataPath();
 float deltaTime();

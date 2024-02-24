@@ -79,7 +79,7 @@ void App::initialize() {
     ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
     // APPDATA FOLDER
-    path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
+    path_t appdata = getDataPath();
     if(!fileManager.dirExists(appdata))
         fileManager.createDir(appdata);
 
@@ -110,7 +110,7 @@ void App::terminate() {
 
     glfwTerminate();
 
-    path_t appdata = getAppDataPath().append(APPDATA_DIRNAME);
+    path_t appdata = getDataPath();
     if(!logger.empty())
         fileManager.appendTextFile(appdata / "log.txt", logger.pullLogs());
     fileManager.writeIniFile(appdata / "settings.ini", settings.getTree());

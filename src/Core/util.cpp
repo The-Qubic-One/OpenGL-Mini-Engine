@@ -3,17 +3,17 @@
 #include "ImGui/imgui.h"
 
 #ifdef _WIN32
-#include <shlobj_core.h>
 
+#include <shlobj_core.h>
 #include <chrono>
 
-path_t getAppDataPath() {
+path_t getDataPath() {
     wchar_t* path;
     SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &path);
-    return path_t(path);
+    return path_t(path).append(APPDATA_DIRNAME);
 }
 
-std::string getTimeAndDate() {
+std::string getTimestamp() {
     auto time = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
     char timeString[20] = "";
 
@@ -33,7 +33,24 @@ std::string getTimeAndDate() {
 
 #elif __linux__
 
-// TODO: implement getAppDataPath() and getTimeAndDate()
+#include <unistd.h>
+#include <sys/types.h>
+#include <pwd.h>
+
+path_t getDataPath() {
+    struct passwd *pw = getpwuid(getuid());
+    const char *homedir = pw->pw_dir;
+    return path_t(homedir).append(".config").append(APPDATA_DIRNAME);
+}
+
+std::string getTimestamp() {
+    char buffer[80];
+
+    std::time_t currentTime = std::time(nullptr);
+    std::strftime(buffer, sizeof(buffer), "%d-%m-%Y %T", std::localtime(&currentTime));
+
+    return buffer;
+}
 
 #endif
 

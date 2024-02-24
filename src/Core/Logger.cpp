@@ -3,7 +3,7 @@
 #include <iostream>
 
 std::string Logger::pullLogs() {
-    std::string out = '\t' + getTimeAndDate();
+    std::string out = '\t' + getTimestamp();
     out.push_back('\n');
     out.insert(out.end(), logText.begin(), logText.end());
     out.push_back('\n');
