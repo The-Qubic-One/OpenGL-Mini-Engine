@@ -1,9 +1,0 @@
-target_sources(${PROJECT_NAME} PUBLIC
-
-${CMAKE_CURRENT_SOURCE_DIR}/App.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/FileManager.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Logger.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/Settings.cpp
-${CMAKE_CURRENT_SOURCE_DIR}/util.cpp
-
-)

@@ -1,21 +1,11 @@
-function linkGLFW()
-    -- filter "system:windows"
-    --     libdirs "vendor/lib/GLFW"
-
-    --     Our static lib should not link against GLFW
-    --     filter "kind:not StaticLib"
-    --         links "glfw3"
-        -- filter {}
-
-    -- filter "system:linux"
-        libdirs "/lib"
-        links "glfw"
-    -- filter {}
-end
 
 workspace "OpenGL-Mini-Engine"
     configurations {"Debug", "Release"}
     location "build"
+
+    filter "system:windows"
+        architecture "x86_64"
+    filter {}
 
     files {
         "src/**.cpp",
@@ -39,11 +29,19 @@ project "Engine"
     kind "ConsoleApp"
     language "C++"
     cppdialect "C++17"
-    location "build/HelloProject"
-    files { "main.cpp", "vendor/src/glad/glad.c", "vendor/src/stb_image/stb_image.cpp" }
-
-    linkGLFW()
+    location "build"
     
-    includedirs {
-        "vendor/include/glad"  -- Adjust the path to the directory containing GLAD headers
+    files {
+        "main.cpp",
+        "vendor/src/glad/glad.c",
+        "vendor/src/stb_image/stb_image.cpp"
     }
+    
+    -- Link GLFW
+    filter "system:windows"
+        libdirs "vendor/lib/GLFW"
+        links "glfw3.lib"
+    
+    filter "system:linux"
+        libdirs "/lib"
+        links "glfw"
