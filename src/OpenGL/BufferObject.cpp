@@ -1,4 +1,4 @@
-#include "BufferObject.h"
+#include "OpenGL/BufferObject.h"
 #include <glad/glad.h>
 
 BufferObject::BufferObject(glint type) : type(type) {

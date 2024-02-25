@@ -9,12 +9,13 @@ workspace "OpenGL-Mini-Engine"
 
     files {
         "src/**.cpp",
-        "src/**.h"
+        "vendor/src/ImGui/**.cpp"
     }
 
     includedirs {
-        "src",
-        "vendor/include"
+        "include",
+        "vendor/include",
+        "vendor/include/ImGui"
     }
 
     filter "configurations:Debug"

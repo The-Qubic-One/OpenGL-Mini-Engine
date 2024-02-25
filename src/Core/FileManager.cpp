@@ -1,7 +1,7 @@
-#include "FileManager.h"
+#include "Core/FileManager.h"
 #include <fstream>
 #include <stb_image/stb_image.h>
-#include "util.h"
+#include "Core/util.h"
 #include <stdexcept>
 #include <string>
 

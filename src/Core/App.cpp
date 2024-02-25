@@ -1,7 +1,7 @@
 #include <glad/glad.h>
-#include "App.h"
-#include "util.h"
-#include "types.h"
+#include "Core/App.h"
+#include "Core/util.h"
+#include "Core/types.h"
 #include <iostream>
 #include <string>
 #include "ImGui/imgui.h"

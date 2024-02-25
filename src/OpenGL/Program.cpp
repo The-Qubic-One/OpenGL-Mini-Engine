@@ -1,4 +1,4 @@
-#include "Program.h"
+#include "OpenGL/Program.h"
 #include <glad/glad.h>
 #include <exception>
 #include <glm/gtc/type_ptr.hpp>

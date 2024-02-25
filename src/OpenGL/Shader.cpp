@@ -1,6 +1,6 @@
 #include <glad/glad.h>
-#include "Shader.h"
-#include "exception"
+#include "OpenGL/Shader.h"
+#include <exception>
 
 Shader::Shader(const int& type) : type(type) {
     id = glCreateShader(type);
