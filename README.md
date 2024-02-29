@@ -30,6 +30,9 @@ __Visual Studio (Windows)__:
 premake5 vs2022
 MSBuild .\build\OpenGL-Mini-Engine.sln -p:Configuration=Release
 
+# copy resource files into /build
+premake5 resources
+
 # you can now run the app!
 .\build\bin\Release\Engine.exe
 ```
@@ -38,6 +41,9 @@ __Make (Linux)__:
 ```bash
 premake5 gmake2
 make config=release -C build
+
+# copy resource files into /build
+premake5 resources
 
 # you can now run the app!
 ./build/bin/Release/Engine
