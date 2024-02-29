@@ -31,6 +31,14 @@ workspace "OpenGL-Mini-Engine"
         end
     }
 
+    newaction {
+        trigger     = "docs",
+        description = "Generate documentation with Doxygen",
+        execute     = function()
+            os.execute("doxygen Doxyfile")
+        end
+    }
+
     filter "configurations:Debug"
         defines { "DEBUG" }
         flags { "Symbols" }
