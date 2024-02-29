@@ -1,6 +1,6 @@
 #include <glad/glad.h>
 #include "OpenGL/Shader.h"
-#include <exception>
+#include <stdexcept>
 
 Shader::Shader(const int& type) : type(type) {
     id = glCreateShader(type);
@@ -20,8 +20,7 @@ void Shader::source(const std::string& src) {
     glGetShaderiv(id, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(id, 512, NULL, infoLog);
-        // TODO: fix this
-        // throw std::exception(infoLog);
+        throw std::runtime_error(infoLog);
     }
 }
 

@@ -1,7 +1,7 @@
 #include "OpenGL/Program.h"
 #include <glad/glad.h>
-#include <exception>
 #include <glm/gtc/type_ptr.hpp>
+#include <stdexcept>
 
 Program::Program(glint vertex, glint fragment) {
     id = glCreateProgram();
@@ -22,8 +22,7 @@ void Program::link() {
     glGetProgramiv(id, GL_LINK_STATUS, &success);
     if (!success) {
         glGetProgramInfoLog(id, 512, NULL, infoLog);
-        // TODO: fix this
-        // throw std::exception(infoLog);
+        throw std::runtime_error(infoLog);
     }
 }
 
