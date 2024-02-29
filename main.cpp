@@ -68,7 +68,7 @@ int main()
     {
         app.initialize();
 
-        path_t exe = getProgramPath();
+        path_t exe = Util::getProgramPath();
 
         // PROGRAM
 

@@ -4,7 +4,10 @@
 #include <filesystem>
 #include "types.h"
 
-std::string getTimestamp();
-path_t getDataPath();
-path_t getProgramPath();
-float deltaTime();
+class Util {
+public:
+    static std::string getTimestamp();
+    static path_t getDataPath();
+    static path_t getProgramPath();
+    static float deltaTime();
+};
