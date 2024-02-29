@@ -15,7 +15,20 @@ workspace "OpenGL-Mini-Engine"
     includedirs {
         "include",
         "vendor/include",
-        "vendor/include/ImGui"
+        "vendor/include/ImGui",
+        "resources"
+    }
+
+    newaction {
+        trigger     = "resources",
+        description = "Copy resources into the bin folder",
+        execute = function ()
+            if os.host() == "windows" then
+                os.execute("xcopy /s resources\\* build\\bin\\Release\\")
+            else
+                os.execute("cp -r resources/* build/bin/Release/")
+            end
+        end
     }
 
     filter "configurations:Debug"

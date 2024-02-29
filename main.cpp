@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "Core/App.h"
+#include "Core/util.h"
 
 #include "OpenGL/Shader.h"
 #include "OpenGL/Program.h"
@@ -67,11 +68,13 @@ int main()
     {
         app.initialize();
 
+        path_t exe = getProgramPath();
+
         // PROGRAM
-        
+
         Shader vertex(GL_VERTEX_SHADER), fragment(GL_FRAGMENT_SHADER);
-        vertex.source(app.fileManager.readTextFile("resources/shaders/vertex.shader"));
-        fragment.source(app.fileManager.readTextFile("resources/shaders/fragment.shader"));
+        vertex.source(app.fileManager.readTextFile(exe / "shaders/vertex.shader"));
+        fragment.source(app.fileManager.readTextFile(exe / "shaders/fragment.shader"));
 
         Program program(vertex.getId(), fragment.getId());
         program.link();
@@ -79,7 +82,7 @@ int main()
         // TEXTURE
 
         Texture2D tex;
-        TextureData tdata = app.fileManager.loadTextureData("resources/textures/container.jpg");
+        TextureData tdata = app.fileManager.loadTextureData((exe / "textures/container.jpg").c_str());
         tex.bind();
 
         tex.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -94,7 +97,7 @@ int main()
 
         // TEXTURE 2
         Texture2D tex2;
-        TextureData tdata2 = app.fileManager.loadTextureData("resources/textures/awesomeface.png");
+        TextureData tdata2 = app.fileManager.loadTextureData((exe / "textures/awesomeface.png").c_str());
         tex2.bind();
 
         tex2.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);

@@ -6,4 +6,5 @@
 
 std::string getTimestamp();
 path_t getDataPath();
+path_t getProgramPath();
 float deltaTime();

@@ -31,6 +31,8 @@ std::string getTimestamp() {
     return timeString;
 }
 
+// TODO: implement getDataPath() for Windows
+
 #elif __linux__
 
 #include <unistd.h>
@@ -41,6 +43,11 @@ path_t getDataPath() {
     struct passwd *pw = getpwuid(getuid());
     const char *homedir = pw->pw_dir;
     return path_t(homedir).append(".config").append(APPDATA_DIRNAME);
+}
+
+path_t getProgramPath() {
+    path_t aaa = std::filesystem::canonical("/proc/self/exe");
+    return aaa.parent_path();
 }
 
 std::string getTimestamp() {
