@@ -63,12 +63,11 @@ float vertices[] = {
 int main()
 {
     App app;
+    path_t exe = Util::getProgramPath();
 
-    try
-    {
+    try {
         app.initialize();
 
-        path_t exe = Util::getProgramPath();
 
         // PROGRAM
 
@@ -183,6 +182,8 @@ int main()
     catch(const std::exception& e)
     {
         app.logger.log(e.what());
+        std::string logs = app.logger.pullLogs();
+        app.fileManager.appendTextFile(Util::getDataPath() / "log.txt", logs);
         app.terminate();
     }
 
