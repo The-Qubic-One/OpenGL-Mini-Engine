@@ -5,6 +5,7 @@ PROJECT_BRIEF          = "A miniature graphics engine made as a practice project
 OUTPUT_DIRECTORY       = build
 GENERATE_HTML          = YES
 GENERATE_LATEX         = NO
+LATEX_OUTPUT           = latex
 
 RECURSIVE              = YES
 INPUT                  = src include
@@ -16,5 +17,4 @@ EXTRACT_ALL            = YES
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html
 HTML_TIMESTAMP         = YES
-
-LATEX_OUTPUT           = latex
+HAVE_DOT               = YES
