@@ -1,38 +1,41 @@
 #pragma once
-#include <string>
-#include "types.h"
-#include <filesystem>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/ini_parser.hpp>
 
+#include <string>
+#include <filesystem>
+
+#include "types.h"
+
+//! @brief Stores data and context of a single texture
 struct TextureData {
     int width, height, channels;
     unsigned char* data;
 
+    //! @brief free the bitmap
     void destroy();
 };
 
+//! @brief Collection of io services for the filesystem
 class FileManager {
 public:
 
-    FileManager();
+    //! @brief read text file
+    static std::string readTextFile(const path_t& path);
 
-    // Text Files
-    std::string readTextFile(const path_t& path) const;
-    void writeTextFile(const path_t& path, const std::string& text) const;
-    void appendTextFile(const path_t& path, const std::string& text) const;
+    //! @brief overwrite file with text
+    static void writeTextFile(const path_t& path, const std::string& text);
 
-    // Ini Files
-    tree_t readIniFile(const path_t& path) const;
-    void writeIniFile(const path_t& path, const tree_t& data) const;
+    //! @brief append text to a file
+    static void appendTextFile(const path_t& path, const std::string& text);
 
-    // Directories
-    bool dirExists(const path_t& path) const;
-    void createDir(const path_t& path) const;
+    //! @brief checks if directory exists
+    static bool dirExists(const path_t& path);
 
-    // File Tests
-    bool fileExists(const path_t& path) const;
+    //! @brief creates a directory
+    static void createDir(const path_t& path);
 
-    // Textures
-    TextureData loadTextureData(const char* filename) const;
+    //! @brief checks if a file exists
+    static bool fileExists(const path_t& path);
+
+    //! @brief loads textures
+    static TextureData loadTextureData(const char* filename);
 };

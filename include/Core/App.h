@@ -19,9 +19,8 @@ public:
     float bg_color[3] = {BG_COLOR};
     bool displayDiagnostics = true;
 
-    Logger logger; // -> nothing :D
+    Logger logger;
     Settings settings;
-    FileManager fileManager; // -> logger
 
     void initialize();
     void terminate();

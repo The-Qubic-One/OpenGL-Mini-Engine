@@ -81,8 +81,8 @@ void App::initialize() {
 
     // APPDATA FOLDER
     path_t appdata = Util::getDataPath();
-    if(!fileManager.dirExists(appdata))
-        fileManager.createDir(appdata);
+    if(!FileManager::dirExists(appdata))
+        FileManager::createDir(appdata);
 
     imgui_settings = (appdata / IMGUI_SETTINGS_FILENAME).string();
     imgui_log = (appdata / IMGUI_LOG_FILENAME).string().c_str();
@@ -93,9 +93,9 @@ void App::initialize() {
     // SETTINGS
     settings.setDefaults();
 
-    if (fileManager.fileExists(appdata / "settings.ini")) {
+    if (FileManager::fileExists(appdata / "settings.ini")) {
         try {
-            std::string loaded = fileManager.readTextFile(appdata / "settings.ini");
+            std::string loaded = FileManager::readTextFile(appdata / "settings.ini");
             settings = SettingsLoader::loadFrom(loaded);
         } catch(const std::exception& e) {
             logger.log(e.what());
@@ -113,9 +113,9 @@ void App::terminate() {
     path_t appdata = Util::getDataPath();
     
     if(!logger.empty())
-        fileManager.appendTextFile(appdata / "log.txt", logger.pullLogs());
+        FileManager::appendTextFile(appdata / "log.txt", logger.pullLogs());
     
-    fileManager.writeTextFile(appdata / "settings.ini", SettingsLoader::saveInto(settings));
+    FileManager::writeTextFile(appdata / "settings.ini", SettingsLoader::saveInto(settings));
 }
 
 GLFWwindow* App::getWindow() const {

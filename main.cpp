@@ -72,8 +72,8 @@ int main()
         // PROGRAM
 
         Shader vertex(GL_VERTEX_SHADER), fragment(GL_FRAGMENT_SHADER);
-        vertex.source(app.fileManager.readTextFile(exe / "shaders/vertex.shader"));
-        fragment.source(app.fileManager.readTextFile(exe / "shaders/fragment.shader"));
+        vertex.source(FileManager::readTextFile(exe / "shaders/vertex.shader"));
+        fragment.source(FileManager::readTextFile(exe / "shaders/fragment.shader"));
 
         Program program(vertex.getId(), fragment.getId());
         program.link();
@@ -81,7 +81,7 @@ int main()
         // TEXTURE
 
         Texture2D tex;
-        TextureData tdata = app.fileManager.loadTextureData((exe / "textures/container.jpg").c_str());
+        TextureData tdata = FileManager::loadTextureData((exe / "textures/container.jpg").c_str());
         tex.bind();
 
         tex.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -96,7 +96,7 @@ int main()
 
         // TEXTURE 2
         Texture2D tex2;
-        TextureData tdata2 = app.fileManager.loadTextureData((exe / "textures/awesomeface.png").c_str());
+        TextureData tdata2 = FileManager::loadTextureData((exe / "textures/awesomeface.png").c_str());
         tex2.bind();
 
         tex2.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -183,7 +183,7 @@ int main()
     {
         app.logger.log(e.what());
         std::string logs = app.logger.pullLogs();
-        app.fileManager.appendTextFile(Util::getDataPath() / "log.txt", logs);
+        FileManager::appendTextFile(Util::getDataPath() / "log.txt", logs);
         app.terminate();
     }
 
