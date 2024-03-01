@@ -13,6 +13,7 @@ EXCLUDE                = vendor test
 
 INLINE_SOURCES         = YES
 EXTRACT_ALL            = YES
+GENERATE_TODOLIST      = YES
 
 HTML_OUTPUT            = html
 HTML_FILE_EXTENSION    = .html

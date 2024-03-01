@@ -4,6 +4,8 @@
 #include <filesystem>
 #include "types.h"
 
+//! @brief Class that provides utility services which implementation would differ between Windows and Linux.
+//! @todo implement getDataPath() for Windows
 class Util {
 public:
     static std::string getTimestamp();

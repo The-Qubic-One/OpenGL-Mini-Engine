@@ -31,8 +31,6 @@ std::string Util::getTimestamp() {
     return timeString;
 }
 
-// TODO: implement getDataPath() for Windows
-
 #elif __linux__
 
 #include <unistd.h>
