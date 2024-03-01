@@ -20,4 +20,5 @@ void Logger::log(const std::string& message) {
     const char* white = " \n\t";
     logText.insert(logText.end(), message.begin() + message.find_first_not_of(white), message.begin() + message.find_last_not_of(white) + 1);
     logText.push_back('\n');
+    std::cout << message + '\n';
 }
