@@ -2,6 +2,7 @@
 #include "Core/App.h"
 #include "Core/util.h"
 #include "Core/types.h"
+#include "Settings/SettingsLoader.h"
 #include <iostream>
 #include <string>
 #include "ImGui/imgui.h"
@@ -90,14 +91,13 @@ void App::initialize() {
     io.LogFilename = imgui_log.c_str();
 
     // SETTINGS
-    settings.reset();
+    settings.setDefaults();
+
     if (fileManager.fileExists(appdata / "settings.ini")) {
         try {
-            settings.setFromTree(fileManager.readIniFile(appdata / "settings.ini"));
-            if(!settings.isComplete())
-                settings.reset();
-        }
-        catch(const std::exception& e) {
+            std::string loaded = fileManager.readTextFile(appdata / "settings.ini");
+            settings = SettingsLoader::loadFrom(loaded);
+        } catch(const std::exception& e) {
             logger.log(e.what());
         }
     }
@@ -111,9 +111,11 @@ void App::terminate() {
     glfwTerminate();
 
     path_t appdata = Util::getDataPath();
+    
     if(!logger.empty())
         fileManager.appendTextFile(appdata / "log.txt", logger.pullLogs());
-    fileManager.writeIniFile(appdata / "settings.ini", settings.getTree());
+    
+    fileManager.writeTextFile(appdata / "settings.ini", SettingsLoader::saveInto(settings));
 }
 
 GLFWwindow* App::getWindow() const {
