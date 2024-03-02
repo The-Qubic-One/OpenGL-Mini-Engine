@@ -80,7 +80,7 @@ void App::initialize() {
     ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
     // APPDATA FOLDER
-    path_t appdata = Util::getDataPath();
+    path_t appdata = Path::getDataPath();
     if(!FileManager::dirExists(appdata))
         FileManager::createDir(appdata);
 
@@ -110,7 +110,7 @@ void App::terminate() {
 
     glfwTerminate();
 
-    path_t appdata = Util::getDataPath();
+    path_t appdata = Path::getDataPath();
     
     if(!logger.empty())
         FileManager::appendTextFile(appdata / "log.txt", logger.pullLogs());

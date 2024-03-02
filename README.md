@@ -49,6 +49,10 @@ premake5 resources
 ./build/bin/Release/Engine
 ```
 
-# TODO and issues
-- add: default settings resource / header file
-- fix: app opens only from repo root
+# Documentation
+
+The project has configured support for doxygen, so you can easily generate documentation using:
+```bash
+premake5 docs
+```
+which you can access by opening `build/html/index.html` in your browser.
