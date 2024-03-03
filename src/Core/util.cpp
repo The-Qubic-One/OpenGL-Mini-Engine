@@ -3,15 +3,15 @@
 #include "ImGui/imgui.h"
 
 std::tuple<int, int, int> HexColor::values(const std::string& hex) {
-    int r, g, b;
-
-    bool omitHash = hex[0] == '#';
-
-    std::stringstream ss;
-    ss << std::hex << hex.substr(omitHash);
-    ss >> std::setw(2) >> r >> std::setw(2) >> g >> std::setw(2) >> b;
-
-    return std::make_tuple(r, g, b);
+    std::istringstream iss(hex.substr(hex[0] == '#')); // Ignore the '#' character
+    int colorValue;
+    iss >> std::hex >> colorValue;
+    
+    return std::make_tuple(
+        (colorValue >> 16) & 0xFF,
+        (colorValue >> 8) & 0xFF,
+        colorValue & 0xFF
+    );
 }
 
 std::string HexColor::toStr(const int& r, const int& g, const int& b) {

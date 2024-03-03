@@ -104,9 +104,9 @@ void App::initialize() {
 
     std::tuple<float, float, float> color = HexColor::values(settings.get("background.color"));
     auto [red, green, blue] = color;
-    this->bg_color[0] = red;
-    this->bg_color[1] = green;
-    this->bg_color[2] = blue;
+    this->bg_color[0] = (float)red / 255;
+    this->bg_color[1] = (float)green / 255;
+    this->bg_color[2] = (float)blue / 255;
 }
 
 void App::terminate() {
@@ -121,7 +121,7 @@ void App::terminate() {
     if(!logger.empty())
         FileManager::appendTextFile(appdata / "log.txt", logger.pullLogs());
     
-    settings.set("background.color", HexColor::toStr(bg_color[0], bg_color[1], bg_color[2]));
+    settings.set("background.color", HexColor::toStr(bg_color[0]*255, bg_color[1]*255, bg_color[2]*255));
     FileManager::writeTextFile(appdata / "settings.ini", SettingsLoader::saveInto(settings));
 }
 
