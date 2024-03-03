@@ -154,7 +154,7 @@ int main()
         {   
             app.startFrame();
 
-            model = glm::rotate(model, glm::radians(rot_speed * 200.0f * ImGui::GetIO().DeltaTime), glm::vec3(0.0f,0.0f,1.0f));
+            model = glm::rotate(model, glm::radians(rot_speed * 200.0f * Time::deltaTime()), glm::vec3(0.0f,0.0f,1.0f));
             program.setUniformMat4f("model", model);
 
             Texture2D::activateUnit(0);
