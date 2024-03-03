@@ -1,20 +1,25 @@
 #pragma once
-#include "Core/types.h"
+
+#include "OpenGL/GLObject.h"
+#include "OpenGL/Shader.h"
+
 #include <cstdint>
 #include <glm/mat4x4.hpp>
 
-class Program
-{
+//! @brief represents one openGL program, consisting of shaders and uniforms
+//!
+//! a complete program will require a vertex shader and a fragment shader,
+//! as well as have all uniform values registered in order to work properly
+class Program : public GLObject {
     glint id;
 
 public:
-    Program(glint vertex, glint fragment);
+    //! initializes the program using two shaders. This is the bare minimum for a working OpenGL program
+    Program(const Shader& vertexShader, const Shader& fragmentShader);
     ~Program();
 
     void link();
     void use();
-
-    glint getId() const;
 
     // Uniforms
     void setUniform1f(const char* name, const float& value);

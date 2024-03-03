@@ -68,14 +68,13 @@ int main()
     try {
         app.initialize();
 
-
         // PROGRAM
 
-        Shader vertex(GL_VERTEX_SHADER), fragment(GL_FRAGMENT_SHADER);
-        vertex.source(FileManager::readTextFile(exe / "shaders/vertex.shader"));
-        fragment.source(FileManager::readTextFile(exe / "shaders/fragment.shader"));
+        Shader vertex(ShaderType::VERTEX), fragment(ShaderType::FRAGMENT);
+        vertex.compile(FileManager::readTextFile(exe / "shaders/vertex.shader"));
+        fragment.compile(FileManager::readTextFile(exe / "shaders/fragment.shader"));
 
-        Program program(vertex.getId(), fragment.getId());
+        Program program(vertex, fragment);
         program.link();
 
         // TEXTURE

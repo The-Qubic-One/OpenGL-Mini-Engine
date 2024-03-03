@@ -1,19 +1,36 @@
 #pragma once
-#include "Core/types.h"
+
+#include "OpenGL/GLObject.h"
+
 #include <string>
 
-class Shader
-{
-    glint id = 0;
-    glint type;
+//! @brief represents all possible types of shader (vertex, geometry or fragment)
+//! @todo compute, tess_controll and tess_evaluation type values cannot be imported
+enum class ShaderType {
+    VERTEX,
+    GEOMETRY,
+    FRAGMENT
+};
+
+//! maps ShaderType enum to an actual uint value used in OpenGL, this exists to decouple header files from glad API
+glint mapShaderType(ShaderType type);
+
+//! @brief represents one openGL shader, holds its initialization, compilation and termination
+//!
+//! for the shader to actually work, it first has to be compiled from source, provided in compile().
+class Shader : public GLObject {
+    ShaderType type;
 
 public:
-    Shader(const int& type);
+    //! initializes an openGL shader
+    Shader(const ShaderType& type);
+
+    //! destructor, will automatically free the openGL shader
     ~Shader();
 
-    void source(const std::string& src);
+    //! sets the shader's source and compiles the shader
+    void compile(const std::string& source);
 
-    bool empty() const;
-    glint getId() const;
-    glint getType() const;
+    //! returns type of the shader
+    ShaderType getType() const;
 };
