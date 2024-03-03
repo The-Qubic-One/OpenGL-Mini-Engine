@@ -27,7 +27,7 @@ __Miscellaneous__:
 Simply run the premake5 executable with the action that suits you, and then compile this action in the `build` directory.
 I've also attatched two examples of how I'd do it with Visual Studio and Make:
 
-> note that the premake5 resources action in necessary to do only once
+> note that the `premake5 resources` action will almost definitely throw a message `cp: target 'build/app/bin/Debug/': No such file or directory`. You can safely disregard it.
 
 __Visual Studio (Windows)__:
 ```powershell

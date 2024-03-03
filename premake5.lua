@@ -15,8 +15,10 @@ workspace "OpenGL-Mini-Engine"
         execute = function ()
             if os.host() == "windows" then
                 os.execute("xcopy /s /i resources\\* build\\app\\bin\\Release\\")
+                os.execute("xcopy /s /i resources\\* build\\app\\bin\\Debug\\")
             else
                 os.execute("cp -nr resources/* build/app/bin/Release/")
+                os.execute("cp -nr resources/* build/app/bin/Debug/")
             end
         end
     }
@@ -61,7 +63,7 @@ project "App"
 
     files "main.cpp"
     includedirs "include"
-    
+
     dependson "Lib"
     links "Lib:static"
     filter "configurations:Debug"
