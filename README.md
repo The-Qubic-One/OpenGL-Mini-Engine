@@ -1,6 +1,8 @@
-# Simple OpenGL Engine
+# OpenGL Mini Engine
 
-A simplistic OpenGL graphics engine written in C++ with the help of premake build system.
+A simplistic OpenGL 3D graphics engine written in C++ with the help of premake build system.
+
+__Compatible with Linux AND Windows!__
 
 ## Dependencies:
 
@@ -25,29 +27,30 @@ __Miscellaneous__:
 Simply run the premake5 executable with the action that suits you, and then compile this action in the `build` directory.
 I've also attatched two examples of how I'd do it with Visual Studio and Make:
 
+> note that the premake5 resources action in necessary to do only once
+
 __Visual Studio (Windows)__:
 ```powershell
 premake5 vs2022
 MSBuild .\build\OpenGL-Mini-Engine.sln -p:Configuration=Release
-
-# copy resource files into /build
 premake5 resources
 
 # you can now run the app!
-.\build\bin\Release\Engine.exe
+.\build\app\bin\Release\Engine.exe
 ```
 
 __Make (Linux)__:
 ```bash
 premake5 gmake2
-make config=release -C build
-
-# copy resource files into /build
+make -C build App
 premake5 resources
 
 # you can now run the app!
-./build/bin/Release/Engine
+./build/app/bin/Release/Engine
 ```
+
+Afterwards, all project files are available in the `build/app/bin/Release/` directory, you can safely move it and use wherever you want.
+If you encounter some problems, look into `log.txt` in `%APPDATA$\OpenGL-Mini-Engine` (Windows) or `~/.config/OpenGL-Mini-Engine` (Linux).
 
 # Documentation
 

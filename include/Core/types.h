@@ -16,7 +16,7 @@
 //! @brief directory name for storing application config, logs and other data
 //!
 //! stored in %APPDATA% on Windows or ~/.config on linux
-#define APPDATA_DIRNAME "OpenGL Mini Engine"
+#define APPDATA_DIRNAME "OpenGL-Mini-Engine"
 
 // WINDOW
 

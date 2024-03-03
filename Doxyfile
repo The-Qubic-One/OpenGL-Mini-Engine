@@ -8,7 +8,7 @@ GENERATE_LATEX         = NO
 LATEX_OUTPUT           = latex
 
 RECURSIVE              = YES
-INPUT                  = src include
+INPUT                  = src include main.cpp
 EXCLUDE                = vendor test
 
 INLINE_SOURCES         = YES
