@@ -101,6 +101,12 @@ void App::initialize() {
             logger.log(e.what());
         }
     }
+
+    std::tuple<float, float, float> color = HexColor::values(settings.get("background.color"));
+    auto [red, green, blue] = color;
+    this->bg_color[0] = red;
+    this->bg_color[1] = green;
+    this->bg_color[2] = blue;
 }
 
 void App::terminate() {
@@ -111,10 +117,11 @@ void App::terminate() {
     glfwTerminate();
 
     path_t appdata = Path::getDataPath();
-    
+
     if(!logger.empty())
         FileManager::appendTextFile(appdata / "log.txt", logger.pullLogs());
     
+    settings.set("background.color", HexColor::toStr(bg_color[0], bg_color[1], bg_color[2]));
     FileManager::writeTextFile(appdata / "settings.ini", SettingsLoader::saveInto(settings));
 }
 

@@ -46,13 +46,13 @@ bool Settings::equals(const Settings& other) const {
     version="0.0"
 
     [background]
-    color="gray"
+    color="#334D4D"
 
 */
 
 std::string defaultVals[] = {
     "general.version", "1.0.0",
-    "background.color", "gray"
+    "background.color", "#334D4D"
 };
 
 int defaultValsNo = 2;

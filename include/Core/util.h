@@ -5,6 +5,16 @@
 
 #include "Core/types.h"
 
+//! hex color conversion service
+class HexColor {
+public:
+    //! convert hex color '#XXXXXX' into tuple of ints
+    static std::tuple<int, int, int> values(const std::string& hex);
+    
+    //! convert color values to hex string '#XXXXXX'
+    static std::string toStr(const int& r, const int& g, const int& b);
+};
+
 //! provides universal access to path related utilities
 //! @todo implement getProgramPath() for Windows
 class Path {

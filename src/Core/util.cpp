@@ -2,6 +2,30 @@
 #include "Core/util.h"
 #include "ImGui/imgui.h"
 
+std::tuple<int, int, int> HexColor::values(const std::string& hex) {
+    int r, g, b;
+
+    bool omitHash = hex[0] == '#';
+
+    std::stringstream ss;
+    ss << std::hex << hex.substr(omitHash);
+    ss >> std::setw(2) >> r >> std::setw(2) >> g >> std::setw(2) >> b;
+
+    return std::make_tuple(r, g, b);
+}
+
+std::string HexColor::toStr(const int& r, const int& g, const int& b) {
+    int red = std::min(std::max(r, 0), 255);
+    int green = std::min(std::max(g, 0), 255);
+    int blue = std::min(std::max(b, 0), 255);
+
+    std::stringstream ss;
+    ss << "#" << std::hex << std::setw(2) << std::setfill('0') << red
+        << std::setw(2) << green << std::setw(2) << blue;
+
+    return ss.str();
+}
+
 #ifdef _WIN32
 
 #include <shlobj_core.h>
