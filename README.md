@@ -4,9 +4,9 @@ A simplistic OpenGL 3D graphics engine written in C++ with the help of premake b
 
 __Compatible with Linux AND Windows!__
 
-## Dependencies:
+## Dependencies
 
-> All dependencies besides the build tools are already included in the `vendor` directory and don't have to be installed.
+Note: All dependencies besides the build tools are already included in the `vendor` directory and don't have to be installed.
 
 __Build system__:
 - premake5
@@ -22,12 +22,12 @@ __Miscellaneous__:
 - Stb Image
 - Dear ImGui
 
-# Compile & run:
+## Compile & run
 
 Simply run the premake5 executable with the action that suits you, and then compile this action in the `build` directory.
 I've also attatched two examples of how I'd do it with Visual Studio and Make:
 
-> note that the `premake5 resources` action will almost definitely throw a message `cp: target 'build/app/bin/Debug/': No such file or directory`. You can safely disregard it.
+Note: The `premake5 resources` action will almost definitely throw a message `cp: target 'build/app/bin/Debug/': No such file or directory`. You can safely disregard it.
 
 __Visual Studio (Windows)__:
 ```powershell
@@ -52,7 +52,7 @@ premake5 resources
 Afterwards, all project files are available in the `build/app/bin/Release/` directory, you can safely move it and use wherever you want.
 If you encounter some problems, look into `log.txt` in `%APPDATA$\OpenGL-Mini-Engine` (Windows) or `~/.config/OpenGL-Mini-Engine` (Linux).
 
-# Documentation
+## Documentation
 
 The project has configured support for doxygen, so you can easily generate documentation using:
 ```bash
@@ -60,6 +60,6 @@ premake5 docs
 ```
 which you can access by opening `build/html/index.html` in your browser.
 
-# License
+## License
 
 This project is released under the GNU Public License v3.
