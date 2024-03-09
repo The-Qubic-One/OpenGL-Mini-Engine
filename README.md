@@ -59,3 +59,7 @@ The project has configured support for doxygen, so you can easily generate docum
 premake5 docs
 ```
 which you can access by opening `build/html/index.html` in your browser.
+
+# License
+
+This project is released under the GNU Public License v3.
