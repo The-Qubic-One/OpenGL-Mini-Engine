@@ -1,21 +1,21 @@
 #pragma once
-#include "Core/types.h"
 #include <cstdint>
 #include <vector>
 
-class Vao
-{
-    glint id = 0;
-    std::vector<glint> atb_len, atb_type, atb_size;
+#include "Core/types.h"
 
-public:
-    Vao();
-    ~Vao();
+class Vao {
+  glint id = 0;
+  std::vector<glint> atb_len, atb_type, atb_size;
 
-    glint getId();
-    void bind();
-    void unbind();
+ public:
+  Vao();
+  ~Vao();
 
-    void queueAttrib(glint type, int n);
-    void setAttribs();
+  glint getId();
+  void bind();
+  void unbind();
+
+  void queueAttrib(glint type, int n);
+  void setAttribs();
 };

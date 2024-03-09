@@ -1,41 +1,40 @@
 #pragma once
 
-#include <string>
 #include <filesystem>
+#include <string>
 
 #include "types.h"
 
-//! @brief Stores data and context of a single texture
+/// Stores data and context of a single texture
 struct TextureData {
-    int width, height, channels;
-    unsigned char* data;
+  int width, height, channels;
+  unsigned char* data;
 
-    //! @brief free the bitmap
-    void destroy();
+  /// free the bitmap
+  void destroy();
 };
 
-//! @brief Collection of io services for the filesystem
+/// Collection of io services for the filesystem
 class FileManager {
-public:
+ public:
+  /// read text file
+  static std::string readTextFile(const path_t& path);
 
-    //! @brief read text file
-    static std::string readTextFile(const path_t& path);
+  /// overwrite file with text
+  static void writeTextFile(const path_t& path, const std::string& text);
 
-    //! @brief overwrite file with text
-    static void writeTextFile(const path_t& path, const std::string& text);
+  /// append text to a file
+  static void appendTextFile(const path_t& path, const std::string& text);
 
-    //! @brief append text to a file
-    static void appendTextFile(const path_t& path, const std::string& text);
+  /// checks if directory exists
+  static bool dirExists(const path_t& path);
 
-    //! @brief checks if directory exists
-    static bool dirExists(const path_t& path);
+  /// creates a directory
+  static void createDir(const path_t& path);
 
-    //! @brief creates a directory
-    static void createDir(const path_t& path);
+  /// checks if a file exists
+  static bool fileExists(const path_t& path);
 
-    //! @brief checks if a file exists
-    static bool fileExists(const path_t& path);
-
-    //! @brief loads textures
-    static TextureData loadTextureData(const char* filename);
+  /// loads textures
+  static TextureData loadTextureData(const char* filename);
 };

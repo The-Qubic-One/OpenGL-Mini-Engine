@@ -1,20 +1,20 @@
 #pragma once
 #include <string>
 
-/*! @brief Engine main logger
-* 
-* Fully IO independent, used only to store logs until they are pulled.
-*/
+/// @brief Engine main logger
+///
+/// Fully IO independent, used only to store logs until they are pulled.
 class Logger {
-    std::string logText;
+  std::string logText;
 
-public:
-    //! @brief returns all stored logs and clears them, should be used to store the logs on disk in critical moments
-    std::string pullLogs();
+ public:
+  /// returns all stored logs and clears them, should be used to store
+  /// the logs on disk in critical moments
+  std::string pullLogs();
 
-    //! @brief checks if there are any logs stored
-    bool empty() const;
+  /// checks if there are any logs stored
+  bool empty() const;
 
-    //! @brief saves a message into logs and prints it in the console
-    void log(const std::string& message);
+  /// saves a message into logs and prints it in the console
+  void log(const std::string& message);
 };

@@ -1,5 +1,5 @@
 
 class Runtime {
-public:
-    static int startApplication();
+ public:
+  static int startApplication();
 };

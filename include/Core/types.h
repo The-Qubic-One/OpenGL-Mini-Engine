@@ -1,6 +1,7 @@
 #pragma once
 
 // VERSION
+
 #define VERSION_TAG ""
 #define VERSION_MAJOR 1
 #define VERSION_MINOR 0
@@ -13,9 +14,9 @@
 #define SETTINGS_FILENAME "settings.ini"
 #define IMGUI_LOG_FILENAME "imgui_log.txt"
 #define IMGUI_SETTINGS_FILENAME "imgui.ini"
-//! @brief directory name for storing application config, logs and other data
-//!
-//! stored in %APPDATA% on Windows or ~/.config on linux
+/// @brief directory name for storing application config, logs and other data
+///
+/// stored in %APPDATA% on Windows or ~/.config on linux
 #define APPDATA_DIRNAME "OpenGL-Mini-Engine"
 
 // WINDOW

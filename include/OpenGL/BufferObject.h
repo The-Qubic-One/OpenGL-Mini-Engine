@@ -1,39 +1,40 @@
 #pragma once
-#include <filesystem>
-#include "Core/types.h"
-#include <cstdint>
 #include <glad/glad.h>
 
-class BufferObject
-{
-   protected:
-    glint id = 0;
-    glint type;
+#include <cstdint>
+#include <filesystem>
 
-   public:
-    BufferObject(glint type);
-    ~BufferObject();
+#include "Core/types.h"
 
-    glint getId();
-    glint getType();
+class BufferObject {
+ protected:
+  glint id = 0;
+  glint type;
 
-    void bind();
-    void unbind();
+ public:
+  BufferObject(glint type);
+  ~BufferObject();
 
-    void data(unsigned int size, const void* data, unsigned int usage);
+  glint getId();
+  glint getType();
 
-    template<typename T>
-    void data(size_t size, T data[], unsigned int usage) {
-        glBufferData(type, size, data, usage);
-    }
+  void bind();
+  void unbind();
+
+  void data(unsigned int size, const void* data, unsigned int usage);
+
+  template <typename T>
+  void data(size_t size, T data[], unsigned int usage) {
+    glBufferData(type, size, data, usage);
+  }
 };
 
 class Vbo : public BufferObject {
-   public:
-    Vbo() : BufferObject(GL_ARRAY_BUFFER) {};
+ public:
+  Vbo() : BufferObject(GL_ARRAY_BUFFER){};
 };
 
 class Ebo : public BufferObject {
-   public:
-    Ebo() : BufferObject(GL_ELEMENT_ARRAY_BUFFER) {};
+ public:
+  Ebo() : BufferObject(GL_ELEMENT_ARRAY_BUFFER){};
 };

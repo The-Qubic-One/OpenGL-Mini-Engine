@@ -1,21 +1,23 @@
 
 #pragma once
 
-#include "Core/types.h"
 #include <cstdint>
 
-//! base class of all OpenGL classes, manages their openGL handle
+#include "Core/types.h"
+
+/// base class of all OpenGL classes, manages their openGL handle
 class GLObject {
-    glint id = 0;
+  glint id = 0;
 
-protected:
-    //! sets the object's handle
-    void setId(const glint& id) noexcept;
+ protected:
+  /// sets the object's handle
+  void setId(const glint& id) noexcept;
 
-public:
-    //! returns object handle (id), if this is zero, it means there was an error during initialization
-    glint getId() const noexcept;
+ public:
+  /// returns object handle (id), if this is zero, it means there was an error
+  /// during initialization
+  glint getId() const noexcept;
 
-    //! checks if the object was correctly initialized
-    bool empty() const noexcept;
+  /// checks if the object was correctly initialized
+  bool empty() const noexcept;
 };
