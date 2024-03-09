@@ -8,7 +8,7 @@ GENERATE_LATEX         = NO
 LATEX_OUTPUT           = latex
 
 RECURSIVE              = YES
-INPUT                  = src include main.cpp README.md
+INPUT                  = src main.cpp README.md
 EXCLUDE                = vendor test
 USE_MDFILE_AS_MAINPAGE = README.md
 

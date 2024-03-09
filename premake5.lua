@@ -51,7 +51,7 @@ project "Lib"
     }
 
     includedirs {
-        "include",
+        "src",
         "vendor/include",
         "vendor/include/ImGui",
     }
@@ -62,7 +62,7 @@ project "App"
     targetname "Engine"
 
     files "main.cpp"
-    includedirs "include"
+    includedirs "src"
 
     dependson "Lib"
     links "Lib:static"
@@ -85,7 +85,7 @@ project "Test"
     
     files "test/**.cpp"
     includedirs {
-        "include",
+        "src",
         "vendor/include",
         "vendor/include/ImGui"
     }
