@@ -1,7 +1,5 @@
-#pragma once
-#include <glad/glad.h>
-
-#include <cstdint>
+#ifndef TEXTURE_2D_H
+#define TEXTURE_2D_H
 
 #include "Core/types.h"
 
@@ -23,3 +21,5 @@ class Texture2D {
   void data(unsigned char* data, glint width, glint height,
             glint channels = GL_RGB);
 };
+
+#endif

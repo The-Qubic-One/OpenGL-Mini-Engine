@@ -1,7 +1,5 @@
-
-#pragma once
-
-#include <cstdint>
+#ifndef GL_OBJECT_H
+#define GL_OBJECT_H
 
 #include "Core/types.h"
 
@@ -21,3 +19,5 @@ class GLObject {
   /// checks if the object was correctly initialized
   bool empty() const noexcept;
 };
+
+#endif

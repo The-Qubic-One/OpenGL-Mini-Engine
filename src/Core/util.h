@@ -1,4 +1,5 @@
-#pragma once
+#ifndef UTIL_H
+#define UTIL_H
 
 #include "Core/types.h"
 
@@ -35,3 +36,5 @@ class Time {
   static std::string getTimestamp();
   static float deltaTime();
 };
+
+#endif

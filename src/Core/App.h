@@ -1,4 +1,5 @@
-#pragma once
+#ifndef APP_H
+#define APP_H
 
 #include "Core/FileManager.h"
 #include "Core/Logger.h"
@@ -31,3 +32,5 @@ class App {
   void startFrame();
   void endFrame();
 };
+
+#endif

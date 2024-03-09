@@ -1,9 +1,5 @@
 #include "OpenGL/Shader.h"
 
-#include <glad/glad.h>
-
-#include <stdexcept>
-
 glint mapShaderType(ShaderType type) {
   switch (type) {
     case ShaderType::VERTEX:

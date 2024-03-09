@@ -1,7 +1,5 @@
-#pragma once
-
-#include <boost/property_tree/ptree.hpp>
-#include <string>
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
 #include "Core/types.h"
 
@@ -37,3 +35,5 @@ class Settings {
   /// gets a key's value
   std::string get(const std::string& keyPath) const;
 };
+
+#endif

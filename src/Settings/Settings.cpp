@@ -1,7 +1,5 @@
 #include "Settings/Settings.h"
 
-#include <iostream>
-
 const tree_t& Settings::getData() const { return data; };
 
 void Settings::setData(const tree_t& data) { this->data = data; }

@@ -1,10 +1,5 @@
 #include "OpenGL/Program.h"
 
-#include <glad/glad.h>
-
-#include <glm/gtc/type_ptr.hpp>
-#include <stdexcept>
-
 Program::Program(const Shader& vertex, const Shader& fragment) {
   GLObject::setId(glCreateProgram());
 

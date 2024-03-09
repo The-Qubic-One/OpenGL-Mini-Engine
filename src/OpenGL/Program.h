@@ -1,7 +1,5 @@
-#pragma once
-
-#include <cstdint>
-#include <glm/mat4x4.hpp>
+#ifndef PROGRAM_H
+#define PROGRAM_H
 
 #include "OpenGL/GLObject.h"
 #include "OpenGL/Shader.h"
@@ -34,3 +32,5 @@ class Program : public GLObject {
 
   void setUniformMat4f(const char* name, glm::mat4 value);
 };
+
+#endif

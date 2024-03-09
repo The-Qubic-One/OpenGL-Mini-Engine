@@ -1,6 +1,5 @@
-#pragma once
-
-#include <string>
+#ifndef SETTINGS_LOADER_H
+#define SETTINGS_LOADER_H
 
 #include "Settings/Settings.h"
 
@@ -13,3 +12,5 @@ class SettingsLoader {
   /// save settings into text
   static std::string saveInto(const Settings& settings);
 };
+
+#endif

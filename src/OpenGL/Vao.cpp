@@ -1,10 +1,5 @@
 #include "OpenGL/Vao.h"
 
-#include <glad/glad.h>
-
-#include <map>
-#include <numeric>
-
 Vao::Vao() { glGenVertexArrays(1, &id); }
 
 Vao::~Vao() { glDeleteVertexArrays(1, &id); }

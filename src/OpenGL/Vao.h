@@ -1,6 +1,5 @@
-#pragma once
-#include <cstdint>
-#include <vector>
+#ifndef VAO_H
+#define VAO_H
 
 #include "Core/types.h"
 
@@ -19,3 +18,5 @@ class Vao {
   void queueAttrib(glint type, int n);
   void setAttribs();
 };
+
+#endif

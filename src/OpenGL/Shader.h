@@ -1,6 +1,5 @@
-#pragma once
-
-#include <string>
+#ifndef SHADER_H
+#define SHADER_H
 
 #include "OpenGL/GLObject.h"
 
@@ -35,3 +34,5 @@ class Shader : public GLObject {
   /// returns type of the shader
   ShaderType getType() const;
 };
+
+#endif

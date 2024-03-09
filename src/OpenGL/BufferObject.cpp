@@ -1,7 +1,5 @@
 #include "OpenGL/BufferObject.h"
 
-#include <glad/glad.h>
-
 BufferObject::BufferObject(glint type) : type(type) { glGenBuffers(1, &id); }
 
 BufferObject::~BufferObject() { glDeleteBuffers(1, &id); }

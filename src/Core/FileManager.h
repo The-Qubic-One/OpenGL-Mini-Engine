@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FILE_MANAGER_H
+#define FILE_MANAGER_H
 
 #include "types.h"
 
@@ -35,3 +36,5 @@ class FileManager {
   /// loads textures
   static TextureData loadTextureData(const char* filename);
 };
+
+#endif

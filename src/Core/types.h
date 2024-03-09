@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TYPES_H
+#define TYPES_H
 
 // VERSION
 
@@ -31,3 +32,5 @@
 #define glint uint32_t
 #define path_t std::filesystem::path
 #define tree_t boost::property_tree::ptree
+
+#endif

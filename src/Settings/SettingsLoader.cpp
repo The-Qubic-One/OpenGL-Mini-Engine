@@ -1,8 +1,5 @@
 #include "Settings/SettingsLoader.h"
 
-#include <boost/property_tree/ini_parser.hpp>
-#include <boost/property_tree/ptree.hpp>
-
 #include "Core/types.h"
 
 Settings SettingsLoader::loadFrom(const std::string& text) {

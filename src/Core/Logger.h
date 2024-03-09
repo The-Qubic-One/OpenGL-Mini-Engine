@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOGGER_H
+#define LOGGER_H
 
 /// @brief Engine main logger
 ///
@@ -17,3 +18,5 @@ class Logger {
   /// saves a message into logs and prints it in the console
   void log(const std::string& message);
 };
+
+#endif
