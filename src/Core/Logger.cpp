@@ -1,7 +1,5 @@
 #include "Core/Logger.h"
 
-#include <iostream>
-
 #include "Core/util.h"
 
 std::string Logger::pullLogs() {

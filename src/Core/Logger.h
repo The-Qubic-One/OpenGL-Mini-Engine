@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 
 /// @brief Engine main logger
 ///

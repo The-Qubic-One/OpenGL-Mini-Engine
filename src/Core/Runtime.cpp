@@ -1,15 +1,7 @@
 #include "Core/Runtime.h"
 
-#include <glad/glad.h>
-
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <iostream>
-
 #include "Core/App.h"
 #include "Core/util.h"
-#include "ImGui/imgui.h"
 #include "OpenGL/BufferObject.h"
 #include "OpenGL/Program.h"
 #include "OpenGL/Shader.h"

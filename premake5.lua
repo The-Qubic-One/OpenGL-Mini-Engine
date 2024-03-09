@@ -56,6 +56,9 @@ project "Lib"
         "vendor/include/ImGui",
     }
 
+    pchheader "src/PCH/pch.h"
+    pchsource "src/PCH/pch.cpp"
+
 project "App"
     kind "ConsoleApp"
     location "build/app"
@@ -95,4 +98,4 @@ project "Test"
     filter "configurations:Debug"
         libdirs "build/lib/bin/Debug/"
     filter "configurations:Release"
-        libdirs "build/lib/bin/Release"
+        libdirs "build/lib/bin/Release/"

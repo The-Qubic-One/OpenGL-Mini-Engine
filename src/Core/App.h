@@ -1,5 +1,4 @@
 #pragma once
-#include <GLFW/glfw3.h>
 
 #include "Core/FileManager.h"
 #include "Core/Logger.h"

@@ -1,11 +1,5 @@
 #include "Core/FileManager.h"
 
-#include <stb_image/stb_image.h>
-
-#include <fstream>
-#include <stdexcept>
-#include <string>
-
 // Files
 
 std::string FileManager::readTextFile(const path_t& path) {

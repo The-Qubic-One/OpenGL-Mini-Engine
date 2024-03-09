@@ -1,9 +1,5 @@
 #include "Core/util.h"
 
-#include <glad/glad.h>
-
-#include "ImGui/imgui.h"
-
 std::tuple<int, int, int> HexColor::values(const std::string& hex) {
   std::istringstream iss(
       hex.substr(hex[0] == '#'));  // Ignore the '#' character
@@ -27,10 +23,6 @@ std::string HexColor::toStr(const int& r, const int& g, const int& b) {
 }
 
 #ifdef _WIN32
-
-#include <shlobj_core.h>
-
-#include <chrono>
 
 path_t Path::getDataPath() {
   wchar_t* path;
@@ -58,10 +50,6 @@ std::string Time::getTimestamp() {
 }
 
 #elif __linux__
-
-#include <pwd.h>
-#include <sys/types.h>
-#include <unistd.h>
 
 path_t Path::getDataPath() {
   struct passwd* pw = getpwuid(getuid());

@@ -5,9 +5,9 @@
 BOOST_AUTO_TEST_SUITE(LoggerTest)
 
 BOOST_AUTO_TEST_CASE(LoggerTest1) {
-    Logger logger;
+  Logger logger;
 
-    BOOST_CHECK(logger.empty());
+  BOOST_CHECK(logger.empty());
 }
 
 BOOST_AUTO_TEST_SUITE_END()

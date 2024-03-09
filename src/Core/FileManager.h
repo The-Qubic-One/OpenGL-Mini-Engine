@@ -1,8 +1,5 @@
 #pragma once
 
-#include <filesystem>
-#include <string>
-
 #include "types.h"
 
 /// Stores data and context of a single texture

@@ -1,15 +1,7 @@
 #include "Core/App.h"
 
-#include <glad/glad.h>
-
-#include <iostream>
-#include <string>
-
 #include "Core/types.h"
 #include "Core/util.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_glfw.h"
-#include "ImGui/imgui_impl_opengl3.h"
 #include "Settings/SettingsLoader.h"
 
 void App::displayPerformanceWindow() {
