@@ -1,7 +1,6 @@
 #ifndef VAO_H
 #define VAO_H
 
-#include "Core/types.h"
 #include "OpenGL/GLObject.h"
 
 class Vao : public GLObject {

@@ -1,6 +1,5 @@
 #include "Core/App.h"
 
-#include "Core/types.h"
 #include "Core/util.h"
 #include "Settings/SettingsLoader.h"
 

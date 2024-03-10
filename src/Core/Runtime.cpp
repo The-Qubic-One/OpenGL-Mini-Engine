@@ -4,7 +4,6 @@
 #include "Core/util.h"
 #include "OpenGL/BufferObject.h"
 #include "OpenGL/Program.h"
-#include "OpenGL/Shader.h"
 #include "OpenGL/Texture2D.h"
 #include "OpenGL/Vao.h"
 

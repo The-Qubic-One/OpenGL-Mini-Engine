@@ -1,7 +1,6 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
-#include "OpenGL/GLObject.h"
 #include "OpenGL/Shader.h"
 
 /// @brief represents one openGL program, consisting of shaders and uniforms

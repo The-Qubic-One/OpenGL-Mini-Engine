@@ -1,7 +1,6 @@
 #ifndef TEXTURE_2D_H
 #define TEXTURE_2D_H
 
-#include "Core/types.h"
 #include "OpenGL/GLObject.h"
 
 class Texture2D : public GLObject {

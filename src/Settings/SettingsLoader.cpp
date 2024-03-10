@@ -1,7 +1,5 @@
 #include "Settings/SettingsLoader.h"
 
-#include "Core/types.h"
-
 Settings SettingsLoader::loadFrom(const std::string& text) {
   std::istringstream iss(text);
   tree_t pt;
