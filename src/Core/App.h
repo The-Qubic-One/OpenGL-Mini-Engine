@@ -1,5 +1,5 @@
-#ifndef APP_H
-#define APP_H
+#ifndef CORE_APP_H_
+#define CORE_APP_H_
 
 #include "Core/FileManager.h"
 #include "Core/Logger.h"

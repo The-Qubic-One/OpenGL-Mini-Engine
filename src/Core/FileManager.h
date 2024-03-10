@@ -1,5 +1,5 @@
-#ifndef FILE_MANAGER_H
-#define FILE_MANAGER_H
+#ifndef CORE_FILEMANAGER_H_
+#define CORE_FILEMANAGER_H_
 
 #include "types.h"
 

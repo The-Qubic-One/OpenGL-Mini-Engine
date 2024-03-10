@@ -1,5 +1,5 @@
-#ifndef VENDOR_PCH_H
-#define VENDOR_PCH_H
+#ifndef PCH_VENDORPCH_H_
+#define PCH_VENDORPCH_H_
 
 #include <glad/glad.h>
 /// padding (necessary because Google style keeps bringing them in reverse
@@ -27,8 +27,8 @@
 #include <vector>
 
 // BOOST
-#include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/ini_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
 
 /// ImGui
 #include "ImGui/imgui.h"

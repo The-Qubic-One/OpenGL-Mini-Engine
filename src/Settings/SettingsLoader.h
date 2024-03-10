@@ -1,5 +1,5 @@
-#ifndef SETTINGS_LOADER_H
-#define SETTINGS_LOADER_H
+#ifndef SETTINGS_SETTINGSLOADER_H_
+#define SETTINGS_SETTINGSLOADER_H_
 
 #include "Settings/Settings.h"
 

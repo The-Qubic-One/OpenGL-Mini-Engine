@@ -1,5 +1,5 @@
-#ifndef UTIL_H
-#define UTIL_H
+#ifndef CORE_UTIL_H_
+#define CORE_UTIL_H_
 
 #include "Core/types.h"
 

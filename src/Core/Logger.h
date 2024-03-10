@@ -1,5 +1,5 @@
-#ifndef LOGGER_H
-#define LOGGER_H
+#ifndef CORE_LOGGER_H_
+#define CORE_LOGGER_H_
 
 /// @brief Engine main logger
 ///

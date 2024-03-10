@@ -1,5 +1,5 @@
-#ifndef RUNTIME_H
-#define RUNTIME_H
+#ifndef CORE_RUNTIME_H_
+#define CORE_RUNTIME_H_
 
 class Runtime {
  public:

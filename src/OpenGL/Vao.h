@@ -1,5 +1,5 @@
-#ifndef VAO_H
-#define VAO_H
+#ifndef OPENGL_VAO_H_
+#define OPENGL_VAO_H_
 
 #include "OpenGL/GLObject.h"
 

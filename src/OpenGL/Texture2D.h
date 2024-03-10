@@ -1,5 +1,5 @@
-#ifndef TEXTURE_2D_H
-#define TEXTURE_2D_H
+#ifndef OPENGL_TEXTURE2D_H_
+#define OPENGL_TEXTURE2D_H_
 
 #include "OpenGL/GLObject.h"
 

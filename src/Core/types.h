@@ -1,5 +1,5 @@
-#ifndef TYPES_H
-#define TYPES_H
+#ifndef CORE_TYPES_H_
+#define CORE_TYPES_H_
 
 // VERSION
 

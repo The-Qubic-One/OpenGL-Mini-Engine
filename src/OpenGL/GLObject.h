@@ -1,5 +1,5 @@
-#ifndef GL_OBJECT_H
-#define GL_OBJECT_H
+#ifndef OPENGL_GLOBJECT_H_
+#define OPENGL_GLOBJECT_H
 
 #include "Core/types.h"
 

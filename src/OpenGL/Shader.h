@@ -1,5 +1,5 @@
-#ifndef SHADER_H
-#define SHADER_H
+#ifndef OPENGL_SHADER_H_
+#define OPENGL_SHADER_H_
 
 #include "OpenGL/GLObject.h"
 

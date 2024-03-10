@@ -1,5 +1,5 @@
-#ifndef PROGRAM_H
-#define PROGRAM_H
+#ifndef OPENGL_PROGRAM_H_
+#define OPENGL_PROGRAM_H_
 
 #include "OpenGL/Shader.h"
 
