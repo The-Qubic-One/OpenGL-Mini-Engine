@@ -52,7 +52,7 @@ int Runtime::startApplication() {
     // TEXTURE
 
     TextureData tdata =
-        FileManager::loadTextureData((exe / "textures/container.jpg").c_str());
+        FileManager::loadTextureData(exe / "textures/container.jpg");
 
     Texture2D tex;
     tex.bind();
@@ -68,8 +68,8 @@ int Runtime::startApplication() {
     tdata.destroy();
 
     // TEXTURE 2
-    TextureData tdata2 = FileManager::loadTextureData(
-        (exe / "textures/awesomeface.png").c_str());
+    TextureData tdata2 =
+        FileManager::loadTextureData(exe / "textures/awesomeface.png");
     Texture2D tex2;
     tex2.bind();
 
