@@ -6,6 +6,8 @@ Texture2D::Texture2D() {
   setId(temp);
 }
 
+/// @todo fix: deleting a texture that didn't get data assigned raises an error
+/// flag
 Texture2D::~Texture2D() {
   glint temp = getId();
   glDeleteTextures(GL_TEXTURE_2D, &temp);

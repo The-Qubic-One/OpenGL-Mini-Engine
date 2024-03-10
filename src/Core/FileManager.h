@@ -34,7 +34,7 @@ class FileManager {
   static bool fileExists(const path_t& path);
 
   /// loads textures
-  static TextureData loadTextureData(const char* filename);
+  static TextureData loadTextureData(const path_t& filename);
 };
 
 #endif

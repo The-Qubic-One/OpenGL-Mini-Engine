@@ -4,7 +4,11 @@
 
 std::string FileManager::readTextFile(const path_t& path) {
   std::string text, line;
+
   std::ifstream file(path);
+  if (!file.is_open())
+    throw std::runtime_error("Text resource not found: " + path.string());
+
   while (std::getline(file, line)) text += line + '\n';
   return text;
 }
@@ -39,15 +43,19 @@ bool FileManager::fileExists(const path_t& path) {
 
 // Textures
 
-TextureData FileManager::loadTextureData(const char* filename) {
+TextureData FileManager::loadTextureData(const path_t& path) {
   stbi_set_flip_vertically_on_load(true);
   TextureData tex;
   int width, height, channels;
-  tex.data = stbi_load(filename, &width, &height, &channels, 0);
+
+  if (!fileExists(path))
+    throw std::runtime_error("Texture resource not found: " +
+                             std::string(path));
+
+  tex.data = stbi_load(path.c_str(), &width, &height, &channels, 0);
 
   if (!tex.data)
-    throw std::runtime_error("Unable to load texture: " +
-                             std::string(filename));
+    throw std::runtime_error("Unable to load texture: " + std::string(path));
 
   tex.width = width;
   tex.height = height;

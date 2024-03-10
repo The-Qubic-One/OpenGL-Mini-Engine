@@ -51,9 +51,10 @@ int Runtime::startApplication() {
 
     // TEXTURE
 
-    Texture2D tex;
     TextureData tdata =
         FileManager::loadTextureData((exe / "textures/container.jpg").c_str());
+
+    Texture2D tex;
     tex.bind();
 
     tex.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -67,9 +68,9 @@ int Runtime::startApplication() {
     tdata.destroy();
 
     // TEXTURE 2
-    Texture2D tex2;
     TextureData tdata2 = FileManager::loadTextureData(
         (exe / "textures/awesomeface.png").c_str());
+    Texture2D tex2;
     tex2.bind();
 
     tex2.setParameter(GL_TEXTURE_WRAP_S, GL_REPEAT);
