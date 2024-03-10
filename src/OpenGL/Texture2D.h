@@ -2,10 +2,10 @@
 #define TEXTURE_2D_H
 
 #include "Core/types.h"
+#include "OpenGL/GLObject.h"
 
-class Texture2D {
+class Texture2D : public GLObject {
  private:
-  glint id = 0;
   glint width, height, channels;
 
  public:

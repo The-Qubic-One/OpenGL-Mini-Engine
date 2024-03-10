@@ -1,12 +1,20 @@
 #include "OpenGL/Texture2D.h"
 
-Texture2D::Texture2D() { glGenTextures(1, &id); }
+Texture2D::Texture2D() {
+  glint temp = getId();
+  glGenTextures(1, &temp);
+  setId(temp);
+}
 
-Texture2D::~Texture2D() { glDeleteTextures(GL_TEXTURE_2D, &id); }
+Texture2D::~Texture2D() {
+  glint temp = getId();
+  glDeleteTextures(GL_TEXTURE_2D, &temp);
+  setId(temp);
+}
 
 // Binding
 
-void Texture2D::bind() { glBindTexture(GL_TEXTURE_2D, id); }
+void Texture2D::bind() { glBindTexture(GL_TEXTURE_2D, getId()); }
 
 void Texture2D::activateUnit(unsigned int index) {
   glActiveTexture(GL_TEXTURE0 + index);

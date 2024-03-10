@@ -1,14 +1,20 @@
 #include "OpenGL/Vao.h"
 
-Vao::Vao() { glGenVertexArrays(1, &id); }
+Vao::Vao() {
+  glint temp = getId();
+  glGenVertexArrays(1, &temp);
+  setId(temp);
+}
 
-Vao::~Vao() { glDeleteVertexArrays(1, &id); }
-
-glint Vao::getId() { return id; }
+Vao::~Vao() {
+  glint temp = getId();
+  glDeleteVertexArrays(1, &temp);
+  setId(temp);
+}
 
 //  Binding
 
-void Vao::bind() { glBindVertexArray(id); }
+void Vao::bind() { glBindVertexArray(getId()); }
 
 void Vao::unbind() { glBindVertexArray(0); }
 

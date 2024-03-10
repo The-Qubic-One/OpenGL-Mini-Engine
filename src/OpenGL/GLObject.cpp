@@ -1,5 +1,7 @@
 #include "OpenGL/GLObject.h"
 
+GLObject::~GLObject() {}
+
 void GLObject::setId(const glint& id) noexcept { this->id = id; }
 
 glint GLObject::getId() const noexcept { return this->id; }

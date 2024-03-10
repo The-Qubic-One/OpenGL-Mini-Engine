@@ -2,16 +2,15 @@
 #define VAO_H
 
 #include "Core/types.h"
+#include "OpenGL/GLObject.h"
 
-class Vao {
-  glint id = 0;
+class Vao : public GLObject {
   std::vector<glint> atb_len, atb_type, atb_size;
 
  public:
   Vao();
   ~Vao();
 
-  glint getId();
   void bind();
   void unbind();
 

@@ -2,17 +2,16 @@
 #define BUFFER_OBJECT_H
 
 #include "Core/types.h"
+#include "OpenGL/GLObject.h"
 
-class BufferObject {
+class BufferObject : public GLObject {
  protected:
-  glint id = 0;
   glint type;
 
  public:
   BufferObject(glint type);
   ~BufferObject();
 
-  glint getId();
   glint getType();
 
   void bind();

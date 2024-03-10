@@ -5,6 +5,8 @@
 
 /// base class of all OpenGL classes, manages their openGL handle
 class GLObject {
+  /// object handle (id), if this is zero, it means there was an error during
+  /// initialization
   glint id = 0;
 
  protected:
@@ -12,8 +14,9 @@ class GLObject {
   void setId(const glint& id) noexcept;
 
  public:
-  /// returns object handle (id), if this is zero, it means there was an error
-  /// during initialization
+  virtual ~GLObject();
+
+  /// returns object handle (id)
   glint getId() const noexcept;
 
   /// checks if the object was correctly initialized
