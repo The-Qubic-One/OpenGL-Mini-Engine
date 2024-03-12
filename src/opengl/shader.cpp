@@ -9,9 +9,10 @@ glint_t mapShaderType(ShaderType type) {
     case ShaderType::FRAGMENT:
       return GL_FRAGMENT_SHADER;
     default:
-      std::string message =
-          "Shader Type not convertable, value: " + (glint_t)type;
-      throw std::runtime_error(message);
+      std::stringstream err;
+      err << "Shader Type not convertable, value: ";
+      err << (glint_t)type;
+      throw std::runtime_error(err.str());
   }
 }
 
