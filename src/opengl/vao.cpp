@@ -37,7 +37,7 @@ void Vao::queueAttrib(glint_t type, int quantity) {
 
 void Vao::setAttribs() {
   int stride = std::accumulate(atb_size.begin(), atb_size.end(), 0);
-  int sizeNow = 0;
+  uintptr_t sizeNow = 0;
   for (int i = 0; i < atb_len.size(); i++) {
     glVertexAttribPointer(i, atb_len[i], atb_type[i], GL_FALSE, stride,
                           (void*)sizeNow);
