@@ -5,7 +5,7 @@
 
 class Texture2D : public GLObject {
  private:
-  glint width, height, channels;
+  glint_t width, height, channels;
 
  public:
   Texture2D();
@@ -15,12 +15,12 @@ class Texture2D : public GLObject {
   static void activateUnit(unsigned int index);
   void unbind();
 
-  void setParameter(glint key, glint val);
+  void setParameter(glint_t key, glint_t val);
 
   void data(unsigned char* data,
-            glint width,
-            glint height,
-            glint channels = GL_RGB);
+            glint_t width,
+            glint_t height,
+            glint_t channels = GL_RGB);
 };
 
 #endif

@@ -4,7 +4,7 @@
 #include "opengl/gl_object.h"
 
 class Vao : public GLObject {
-  std::vector<glint> atb_len, atb_type, atb_size;
+  std::vector<glint_t> atb_len, atb_type, atb_size;
 
  public:
   Vao();
@@ -13,7 +13,7 @@ class Vao : public GLObject {
   void bind();
   void unbind();
 
-  void queueAttrib(glint type, int n);
+  void queueAttrib(glint_t type, int n);
   void setAttribs();
 };
 

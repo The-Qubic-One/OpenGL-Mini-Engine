@@ -8,7 +8,7 @@
 /// a complete program will require a vertex shader and a fragment shader,
 /// as well as have all uniform values registered in order to work properly
 class Program : public GLObject {
-  glint id;
+  glint_t id;
 
  public:
   /// initializes the program using two shaders. This is the bare minimum for a

@@ -11,7 +11,7 @@ enum class ShaderType { VERTEX, GEOMETRY, FRAGMENT };
 
 /// maps ShaderType enum to an actual uint value used in OpenGL, this exists to
 /// decouple header files from glad API
-glint mapShaderType(ShaderType type);
+glint_t mapShaderType(ShaderType type);
 
 /// @brief represents one openGL shader, holds its initialization, compilation
 /// and termination

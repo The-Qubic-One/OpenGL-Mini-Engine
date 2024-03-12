@@ -29,7 +29,7 @@
 
 // TYPES
 
-#define glint uint32_t
+#define glint_t uint32_t
 #define path_t std::filesystem::path
 #define tree_t boost::property_tree::ptree
 

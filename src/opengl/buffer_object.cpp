@@ -1,18 +1,18 @@
 #include "opengl/buffer_object.h"
 
-BufferObject::BufferObject(glint type) : type(type) {
-  glint temp = getId();
+BufferObject::BufferObject(glint_t type) : type(type) {
+  glint_t temp = getId();
   glGenBuffers(1, &temp);
   setId(temp);
 }
 
 BufferObject::~BufferObject() {
-  glint temp = getId();
+  glint_t temp = getId();
   glDeleteBuffers(1, &temp);
   setId(temp);
 }
 
-glint BufferObject::getType() {
+glint_t BufferObject::getType() {
   return type;
 }
 

@@ -3,11 +3,11 @@
 std::tuple<int, int, int> HexColor::values(const std::string& hex) {
   std::istringstream iss(
       hex.substr(hex[0] == '#'));  // Ignore the '#' character
-  int colorValue;
-  iss >> std::hex >> colorValue;
+  int color_value;
+  iss >> std::hex >> color_value;
 
-  return std::make_tuple((colorValue >> 16) & 0xFF, (colorValue >> 8) & 0xFF,
-                         colorValue & 0xFF);
+  return std::make_tuple((color_value >> 16) & 0xFF, (color_value >> 8) & 0xFF,
+                         color_value & 0xFF);
 }
 
 std::string HexColor::toStr(const int& r, const int& g, const int& b) {
@@ -53,21 +53,20 @@ std::string Time::getTimestamp() {
 
 path_t Path::getDataPath() {
   struct passwd* pw = getpwuid(getuid());
-  const char* homedir = pw->pw_dir;
-  return path_t(homedir).append(".config").append(APPDATA_DIRNAME);
+  const char* home_dir = pw->pw_dir;
+  return path_t(home_dir).append(".config").append(APPDATA_DIRNAME);
 }
 
 path_t Path::getProgramPath() {
-  path_t aaa = std::filesystem::canonical("/proc/self/exe");
-  return aaa.parent_path();
+  return std::filesystem::canonical("/proc/self/exe").parent_path();
 }
 
 std::string Time::getTimestamp() {
   char buffer[80];
 
-  std::time_t currentTime = std::time(nullptr);
+  std::time_t current_time = std::time(nullptr);
   std::strftime(buffer, sizeof(buffer), "%d-%m-%Y %T",
-                std::localtime(&currentTime));
+                std::localtime(&current_time));
 
   return buffer;
 }

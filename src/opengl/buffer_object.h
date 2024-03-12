@@ -5,13 +5,13 @@
 
 class BufferObject : public GLObject {
  protected:
-  glint type;
+  glint_t type;
 
  public:
-  BufferObject(glint type);
+  BufferObject(glint_t type);
   ~BufferObject();
 
-  glint getType();
+  glint_t getType();
 
   void bind();
   void unbind();

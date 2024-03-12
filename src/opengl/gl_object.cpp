@@ -2,11 +2,11 @@
 
 GLObject::~GLObject() {}
 
-void GLObject::setId(const glint& id) noexcept {
+void GLObject::setId(const glint_t& id) noexcept {
   this->id = id;
 }
 
-glint GLObject::getId() const noexcept {
+glint_t GLObject::getId() const noexcept {
   return this->id;
 }
 

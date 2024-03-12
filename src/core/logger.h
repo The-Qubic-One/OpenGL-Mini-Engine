@@ -5,7 +5,7 @@
 ///
 /// Fully IO independent, used only to store logs until they are pulled.
 class Logger {
-  std::string logText;
+  std::string log_text;
 
  public:
   /// returns all stored logs and clears them, should be used to store

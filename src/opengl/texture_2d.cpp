@@ -1,7 +1,7 @@
 #include "opengl/texture_2d.h"
 
 Texture2D::Texture2D() {
-  glint temp = getId();
+  glint_t temp = getId();
   glGenTextures(1, &temp);
   setId(temp);
 }
@@ -9,7 +9,7 @@ Texture2D::Texture2D() {
 /// @todo fix: deleting a texture that didn't get data assigned raises an error
 /// flag
 Texture2D::~Texture2D() {
-  glint temp = getId();
+  glint_t temp = getId();
   glDeleteTextures(GL_TEXTURE_2D, &temp);
   setId(temp);
 }
@@ -30,16 +30,16 @@ void Texture2D::unbind() {
 
 // Parameters
 
-void Texture2D::setParameter(glint key, glint val) {
+void Texture2D::setParameter(glint_t key, glint_t val) {
   glTexParameteri(GL_TEXTURE_2D, key, val);
 }
 
 // Setup
 
 void Texture2D::data(unsigned char* data,
-                     glint width,
-                     glint height,
-                     glint channels) {
+                     glint_t width,
+                     glint_t height,
+                     glint_t channels) {
   this->width = width;
   this->height = height;
 

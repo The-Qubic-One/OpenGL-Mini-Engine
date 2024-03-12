@@ -21,7 +21,7 @@ void App::displayPerformanceWindow() {
 
 //  GLFW Callbacks
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
+void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
   glViewport(0, 0, width, height);
 }
 
@@ -30,7 +30,7 @@ void processInput(GLFWwindow* window) {
     glfwSetWindowShouldClose(window, true);
 }
 
-void glfw_error_callback(int error, const char* description) {
+void glfwErrorCallback(int error, const char* description) {
   std::cerr << "GLFW Error " + std::to_string(error) + ": " +
                    std::string(description);
 }
@@ -54,8 +54,8 @@ void App::initialize() {
     exit(EXIT_FAILURE);
   }
   glfwMakeContextCurrent(window);
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-  glfwSetErrorCallback(glfw_error_callback);
+  glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+  glfwSetErrorCallback(glfwErrorCallback);
 
   //  GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -145,7 +145,7 @@ void App::startFrame() {
   glClearColor(bg_color[0], bg_color[1], bg_color[2], 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  if (displayDiagnostics)
+  if (display_diagnostics)
     displayPerformanceWindow();
 }
 

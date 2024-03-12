@@ -1,13 +1,13 @@
 #include "opengl/vao.h"
 
 Vao::Vao() {
-  glint temp = getId();
+  glint_t temp = getId();
   glGenVertexArrays(1, &temp);
   setId(temp);
 }
 
 Vao::~Vao() {
-  glint temp = getId();
+  glint_t temp = getId();
   glDeleteVertexArrays(1, &temp);
   setId(temp);
 }
@@ -24,12 +24,12 @@ void Vao::unbind() {
 
 //  Attributes
 
-std::map<glint, unsigned int> gl_to_size = {
+std::map<glint_t, unsigned int> gl_to_size = {
     {GL_INT, sizeof(int)},
     {GL_UNSIGNED_INT, sizeof(unsigned int)},
     {GL_FLOAT, sizeof(float)}};
 
-void Vao::queueAttrib(glint type, int quantity) {
+void Vao::queueAttrib(glint_t type, int quantity) {
   atb_len.push_back(quantity);
   atb_type.push_back(type);
   atb_size.push_back(quantity * gl_to_size[type]);

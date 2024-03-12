@@ -1,6 +1,6 @@
 #include "opengl/shader.h"
 
-glint mapShaderType(ShaderType type) {
+glint_t mapShaderType(ShaderType type) {
   switch (type) {
     case ShaderType::VERTEX:
       return GL_VERTEX_SHADER;
@@ -9,8 +9,9 @@ glint mapShaderType(ShaderType type) {
     case ShaderType::FRAGMENT:
       return GL_FRAGMENT_SHADER;
     default:
-      throw std::runtime_error("Shader Type not convertable, value: " +
-                               (glint)type);
+      std::string message =
+          "Shader Type not convertable, value: " + (glint_t)type;
+      throw std::runtime_error(message);
   }
 }
 
@@ -28,11 +29,11 @@ void Shader::compile(const std::string& source) {
   glCompileShader(GLObject::getId());
 
   int success;
-  char infoLog[512];
+  char info_log[512];
   glGetShaderiv(GLObject::getId(), GL_COMPILE_STATUS, &success);
   if (!success) {
-    glGetShaderInfoLog(GLObject::getId(), 512, NULL, infoLog);
-    throw std::runtime_error(infoLog);
+    glGetShaderInfoLog(GLObject::getId(), 512, NULL, info_log);
+    throw std::runtime_error(info_log);
   }
 }
 

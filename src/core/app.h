@@ -5,9 +5,9 @@
 #include "core/logger.h"
 #include "settings/settings.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
-void glfw_error_callback(int error, const char* description);
+void glfwErrorCallback(int error, const char* description);
 
 class App {
   GLFWwindow* window;
@@ -18,7 +18,7 @@ class App {
 
  public:
   float bg_color[3] = {BG_COLOR};
-  bool displayDiagnostics = true;
+  bool display_diagnostics = true;
 
   Logger logger;
   Settings settings;
