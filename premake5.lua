@@ -44,7 +44,7 @@ project "Lib"
     location "build/lib"
     
     files {
-        "src/**.cc",
+        "src/**.cpp",
         "vendor/src/ImGui/**.cpp",
         "vendor/src/glad/glad.c",
         "vendor/src/stb_image/stb_image.cpp"
@@ -57,14 +57,14 @@ project "Lib"
     }
 
     pchheader "src/pch/pch.h"
-    pchsource "src/pch/pch.cc"
+    pchsource "src/pch/pch.cpp"
 
 project "App"
     kind "ConsoleApp"
     location "build/app"
     targetname "Engine"
 
-    files "main.cc"
+    files "main.cpp"
     includedirs "src"
 
     dependson "Lib"
@@ -86,7 +86,7 @@ project "Test"
     kind "ConsoleApp"
     location "build/test"
     
-    files "test/**.cc"
+    files "test/**.cpp"
     includedirs {
         "src",
         "vendor/include",

@@ -11,7 +11,9 @@ Program::Program(const Shader& vertex, const Shader& fragment) {
   glAttachShader(GLObject::getId(), fragment.getId());
 }
 
-Program::~Program() { glDeleteProgram(GLObject::getId()); }
+Program::~Program() {
+  glDeleteProgram(GLObject::getId());
+}
 
 void Program::link() {
   glLinkProgram(GLObject::getId());
@@ -25,25 +27,32 @@ void Program::link() {
   }
 }
 
-void Program::use() { glUseProgram(GLObject::getId()); }
+void Program::use() {
+  glUseProgram(GLObject::getId());
+}
 
 void Program::setUniform1f(const char* name, const float& value) {
   glUniform1f(glGetUniformLocation(GLObject::getId(), name), value);
 }
 
-void Program::setUniform2f(const char* name, const float& value1,
+void Program::setUniform2f(const char* name,
+                           const float& value1,
                            const float& value2) {
   glUniform2f(glGetUniformLocation(GLObject::getId(), name), value1, value2);
 }
 
-void Program::setUniform3f(const char* name, const float& value1,
-                           const float& value2, const float& value3) {
+void Program::setUniform3f(const char* name,
+                           const float& value1,
+                           const float& value2,
+                           const float& value3) {
   glUniform3f(glGetUniformLocation(GLObject::getId(), name), value1, value2,
               value3);
 }
 
-void Program::setUniform4f(const char* name, const float& value1,
-                           const float& value2, const float& value3,
+void Program::setUniform4f(const char* name,
+                           const float& value1,
+                           const float& value2,
+                           const float& value3,
                            const float& value4) {
   glUniform4f(glGetUniformLocation(GLObject::getId(), name), value1, value2,
               value3, value4);

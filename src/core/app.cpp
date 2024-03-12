@@ -78,7 +78,8 @@ void App::initialize() {
 
   // APPDATA FOLDER
   path_t appdata = Path::getDataPath();
-  if (!FileManager::dirExists(appdata)) FileManager::createDir(appdata);
+  if (!FileManager::dirExists(appdata))
+    FileManager::createDir(appdata);
 
   imgui_settings = (appdata / IMGUI_SETTINGS_FILENAME).string();
   imgui_log = (appdata / IMGUI_LOG_FILENAME).string().c_str();
@@ -125,9 +126,13 @@ void App::terminate() {
                              SettingsLoader::saveInto(settings));
 }
 
-GLFWwindow* App::getWindow() const { return window; }
+GLFWwindow* App::getWindow() const {
+  return window;
+}
 
-bool App::shouldClose() const { return glfwWindowShouldClose(window); }
+bool App::shouldClose() const {
+  return glfwWindowShouldClose(window);
+}
 
 void App::startFrame() {
   processInput(window);
@@ -140,7 +145,8 @@ void App::startFrame() {
   glClearColor(bg_color[0], bg_color[1], bg_color[2], 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  if (displayDiagnostics) displayPerformanceWindow();
+  if (displayDiagnostics)
+    displayPerformanceWindow();
 }
 
 void App::endFrame() {

@@ -153,7 +153,8 @@ int Runtime::startApplication() {
       {
         ImGui::Begin("Specs");
         ImGui::SliderFloat("rotation speed", &rot_speed, -5.0f, 5.0f);
-        if (ImGui::Button("reset")) rot_speed = 0.0f;
+        if (ImGui::Button("reset"))
+          rot_speed = 0.0f;
         ImGui::ColorEdit3("clear color", (float*)&(app.bg_color));
         ImGui::End();
       }

@@ -12,7 +12,9 @@ std::string Logger::pullLogs() {
   return out;
 }
 
-bool Logger::empty() const { return logText.empty(); }
+bool Logger::empty() const {
+  return logText.empty();
+}
 
 void Logger::log(const std::string& message) {
   const char* white = " \n\t";

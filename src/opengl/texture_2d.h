@@ -17,7 +17,9 @@ class Texture2D : public GLObject {
 
   void setParameter(glint key, glint val);
 
-  void data(unsigned char* data, glint width, glint height,
+  void data(unsigned char* data,
+            glint width,
+            glint height,
             glint channels = GL_RGB);
 };
 

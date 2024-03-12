@@ -18,7 +18,9 @@ Shader::Shader(const ShaderType& type) : type(type) {
   GLObject::setId(glCreateShader(mapShaderType(type)));
 }
 
-Shader::~Shader() { glDeleteShader(GLObject::getId()); }
+Shader::~Shader() {
+  glDeleteShader(GLObject::getId());
+}
 
 void Shader::compile(const std::string& source) {
   const char* sourceChar = source.c_str();
@@ -34,4 +36,6 @@ void Shader::compile(const std::string& source) {
   }
 }
 
-ShaderType Shader::getType() const { return type; }
+ShaderType Shader::getType() const {
+  return type;
+}

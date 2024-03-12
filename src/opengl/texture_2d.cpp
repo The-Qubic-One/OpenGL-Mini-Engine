@@ -16,13 +16,17 @@ Texture2D::~Texture2D() {
 
 // Binding
 
-void Texture2D::bind() { glBindTexture(GL_TEXTURE_2D, getId()); }
+void Texture2D::bind() {
+  glBindTexture(GL_TEXTURE_2D, getId());
+}
 
 void Texture2D::activateUnit(unsigned int index) {
   glActiveTexture(GL_TEXTURE0 + index);
 }
 
-void Texture2D::unbind() { glBindTexture(GL_TEXTURE_2D, 0); }
+void Texture2D::unbind() {
+  glBindTexture(GL_TEXTURE_2D, 0);
+}
 
 // Parameters
 
@@ -32,7 +36,9 @@ void Texture2D::setParameter(glint key, glint val) {
 
 // Setup
 
-void Texture2D::data(unsigned char* data, glint width, glint height,
+void Texture2D::data(unsigned char* data,
+                     glint width,
+                     glint height,
                      glint channels) {
   this->width = width;
   this->height = height;

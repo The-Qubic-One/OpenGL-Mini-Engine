@@ -14,9 +14,13 @@ Vao::~Vao() {
 
 //  Binding
 
-void Vao::bind() { glBindVertexArray(getId()); }
+void Vao::bind() {
+  glBindVertexArray(getId());
+}
 
-void Vao::unbind() { glBindVertexArray(0); }
+void Vao::unbind() {
+  glBindVertexArray(0);
+}
 
 //  Attributes
 

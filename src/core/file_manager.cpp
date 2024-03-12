@@ -9,7 +9,8 @@ std::string FileManager::readTextFile(const path_t& path) {
   if (!file.is_open())
     throw std::runtime_error("Text resource not found: " + path.string());
 
-  while (std::getline(file, line)) text += line + '\n';
+  while (std::getline(file, line))
+    text += line + '\n';
   return text;
 }
 
@@ -63,4 +64,6 @@ TextureData FileManager::loadTextureData(const path_t& path) {
   return tex;
 }
 
-void TextureData::destroy() { stbi_image_free(data); }
+void TextureData::destroy() {
+  stbi_image_free(data);
+}
