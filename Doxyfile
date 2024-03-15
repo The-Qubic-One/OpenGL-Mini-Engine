@@ -1,5 +1,5 @@
 PROJECT_NAME           = "OpenGL Mini Engine"
-PROJECT_NUMBER         = "alpha-0.0.0.0.0.0.1"
+PROJECT_NUMBER         = "development"
 PROJECT_BRIEF          = "A miniature graphics engine made as a practice project with glfw, glad, boost and imgui "
 
 OUTPUT_DIRECTORY       = build
