@@ -2,7 +2,7 @@
 
 A simplistic OpenGL 3D graphics engine written in C++ with the help of premake build system.
 
-__Compatible with Linux AND Windows!__
+__Cross-platform compatible with Linux AND Windows!__
 
 ## Dependencies
 
@@ -27,7 +27,7 @@ __Miscellaneous__:
 Simply run the premake5 executable with the action that suits you, and then compile this action in the `build` directory.
 I've also attached two examples of how I'd do it with Visual Studio and Make:
 
-Note: The `premake5 resources` action will almost definitely throw a message `cp: target 'build/app/bin/Debug/': No such file or directory`. You can safely disregard it.
+Note: On Linux, the `premake5 resources` action will throw a message `cp: target 'build/app/bin/Debug/': No such file or directory`. You can safely disregard it.
 
 __Visual Studio (Windows)__:
 ```powershell

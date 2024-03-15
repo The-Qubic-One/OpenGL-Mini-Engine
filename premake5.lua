@@ -52,6 +52,7 @@ project "Lib"
 
     includedirs {
         "src",
+        "src/pch",
         "vendor/include",
         "vendor/include/ImGui",
     }
@@ -60,7 +61,7 @@ project "Lib"
     pchsource "src/pch/pch.cpp"
     filter { "system:windows", "files:**.cpp" }
         forceincludes { "pch.h" }
-    filter { "files:**.c", "system:windows" }
+    filter { "system:windows", "files:**.c" }
         flags { "NoPCH" }
 
 project "App"

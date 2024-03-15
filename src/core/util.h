@@ -14,7 +14,6 @@ class HexColor {
 };
 
 /// provides universal access to path related utilities
-/// @todo implement getProgramPath() for Windows
 class Path {
  public:
   /// transforms a relative path in app data directory to an absolute path
