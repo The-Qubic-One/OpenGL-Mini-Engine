@@ -11,9 +11,13 @@ std::tuple<int, int, int> HexColor::values(const std::string& hex) {
 }
 
 std::string HexColor::toStr(const int& r, const int& g, const int& b) {
-  int red = std::min(std::max(r, 0), 255);
-  int green = std::min(std::max(g, 0), 255);
-  int blue = std::min(std::max(b, 0), 255);
+    int red = r;
+    int green = g;
+    int blue = b;
+
+  // int red = std::min(std::max(r, 0), 255);
+  // int green = std::min(std::max(g, 0), 255);
+  // int blue = std::min(std::max(b, 0), 255);
 
   std::stringstream ss;
   ss << "#" << std::hex << std::setw(2) << std::setfill('0') << red
@@ -28,6 +32,13 @@ path_t Path::getDataPath() {
   wchar_t* path;
   SHGetKnownFolderPath(FOLDERID_RoamingAppData, 0, NULL, &path);
   return path_t(path).append(APPDATA_DIRNAME);
+}
+
+path_t Path::getProgramPath() {
+  wchar_t buffer[MAX_PATH];
+  GetModuleFileNameW(nullptr, buffer, MAX_PATH);
+  path_t fullPath(buffer);
+  return fullPath.parent_path();
 }
 
 std::string Time::getTimestamp() {

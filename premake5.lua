@@ -33,11 +33,11 @@ workspace "OpenGL-Mini-Engine"
 
     filter "configurations:Release"
         defines { "NDEBUG" }
-        optimize "On"
+        optimize "on"
 
     filter "configurations:Debug"
         defines { "DEBUG" }
-        flags { "Symbols" }
+        symbols "on"
 
 project "Lib"
     kind "StaticLib"
@@ -56,8 +56,12 @@ project "Lib"
         "vendor/include/ImGui",
     }
 
-    pchheader "src/pch/pch.h"
+    pchheader "pch.h"
     pchsource "src/pch/pch.cpp"
+    filter { "system:windows", "files:**.cpp" }
+        forceincludes { "pch.h" }
+    filter { "files:**.c", "system:windows" }
+        flags { "NoPCH" }
 
 project "App"
     kind "ConsoleApp"
@@ -68,7 +72,7 @@ project "App"
     includedirs "src"
 
     dependson "Lib"
-    links "Lib:static"
+    links "Lib"
     filter "configurations:Debug"
         libdirs "build/lib/bin/Debug/"
     filter "configurations:Release"
@@ -94,7 +98,7 @@ project "Test"
     }
     
     dependson "Lib"
-    links "Lib:static"
+    links "Lib"
     filter "configurations:Debug"
         libdirs "build/lib/bin/Debug/"
     filter "configurations:Release"

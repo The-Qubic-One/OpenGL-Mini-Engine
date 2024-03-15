@@ -49,14 +49,17 @@ TextureData FileManager::loadTextureData(const path_t& path) {
   TextureData tex;
   int width, height, channels;
 
-  if (!fileExists(path))
-    throw std::runtime_error("Texture resource not found: " +
-                             std::string(path));
+  if (!fileExists(path)) {
+      std::stringstream ss;
+      ss << "Texture resource not found: " << path;
+      throw std::runtime_error(ss.str());
+  }
 
-  tex.data = stbi_load(path.c_str(), &width, &height, &channels, 0);
+  std::string path_str = path.string();
+  tex.data = stbi_load(path_str.c_str(), &width, &height, &channels, 0);
 
   if (!tex.data)
-    throw std::runtime_error("Unable to load texture: " + std::string(path));
+    throw std::runtime_error("Unable to load texture: " + path.string());
 
   tex.width = width;
   tex.height = height;
