@@ -11,13 +11,9 @@ std::tuple<int, int, int> HexColor::values(const std::string& hex) {
 }
 
 std::string HexColor::toStr(const int& r, const int& g, const int& b) {
-    int red = r;
-    int green = g;
-    int blue = b;
-
-  // int red = std::min(std::max(r, 0), 255);
-  // int green = std::min(std::max(g, 0), 255);
-  // int blue = std::min(std::max(b, 0), 255);
+  int red = std::min(std::max(r, 0), 255);
+  int green = std::min(std::max(g, 0), 255);
+  int blue = std::min(std::max(b, 0), 255);
 
   std::stringstream ss;
   ss << "#" << std::hex << std::setw(2) << std::setfill('0') << red

@@ -39,8 +39,8 @@
 #ifdef _WIN32
 /// Windows
 
+#define NOMINMAX  // turns off windows std::min and std::max implementation
 #include <shlobj_core.h>
-
 #include <chrono>
 
 #elif __linux__
