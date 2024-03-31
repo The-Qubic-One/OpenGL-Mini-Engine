@@ -1,6 +1,7 @@
 #include "core/runtime.h"
 
 #include "core/app.h"
+#include "core/global.h"
 #include "core/util.h"
 #include "opengl/buffer_object.h"
 #include "opengl/program.h"
@@ -126,7 +127,7 @@ int Runtime::startApplication() {
     program.setUniform1i("texture1", 0);
     program.setUniform1i("texture2", 1);
     program.setUniformMat4f("model", model);
-    program.setUniformMat4f("view", app.camera.view());
+    program.setUniformMat4f("view", Global::camera.view());
     program.setUniformMat4f("projection", proj);
 
     float rot_speed = 0.1f;
@@ -138,7 +139,7 @@ int Runtime::startApplication() {
                           glm::radians(rot_speed * 200.0f * Time::deltaTime()),
                           glm::vec3(0.0f, 0.0f, 1.0f));
       program.setUniformMat4f("model", model);
-      program.setUniformMat4f("view", app.camera.view());
+      program.setUniformMat4f("view", Global::camera.view());
 
       Texture2D::activateUnit(0);
       tex.bind();

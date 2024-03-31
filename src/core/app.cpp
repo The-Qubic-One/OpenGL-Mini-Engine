@@ -1,5 +1,6 @@
 #include "core/app.h"
 
+#include "core/global.h"
 #include "core/util.h"
 #include "settings/settings_loader.h"
 
@@ -26,6 +27,8 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
 }
 
 void App::processInput(GLFWwindow* window) {
+  using namespace Global;
+
   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     glfwSetWindowShouldClose(window, true);
 
@@ -40,6 +43,25 @@ void App::processInput(GLFWwindow* window) {
   if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
     camera.move(glm::normalize(glm::cross(camera.front(), camera.up())) *
                 cameraSpeed);
+}
+
+void processMouse(GLFWwindow* window, double xpos, double ypos) {
+  using namespace Global;
+
+  if (firstCameraRecord) {
+    cursorX = xpos;
+    cursorY = ypos;
+    firstCameraRecord = false;
+    return;
+  }
+
+  float deltaX = xpos - cursorX;
+  float deltaY = ypos - cursorY;
+  cursorX = xpos;
+  cursorY = ypos;
+
+  float sensitivity = 40.0f * Time::deltaTime();
+  camera.rotate(deltaX * sensitivity, -deltaY * sensitivity);
 }
 
 void glfwErrorCallback(int error, const char* description) {
@@ -69,6 +91,8 @@ void App::initialize() {
   glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
   glfwSetErrorCallback(glfwErrorCallback);
   glfwSwapInterval(0);  // disable VSYNC
+  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+  glfwSetCursorPosCallback(window, processMouse);
 
   //  GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {

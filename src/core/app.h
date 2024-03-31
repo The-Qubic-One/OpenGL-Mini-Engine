@@ -8,6 +8,7 @@
 
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
 
+void processMouse(GLFWwindow* window, double xpos, double ypos);
 void glfwErrorCallback(int error, const char* description);
 
 class App {
@@ -23,7 +24,6 @@ class App {
   float bg_color[3] = {BG_COLOR};
   bool display_diagnostics = true;
 
-  Camera camera;
   Logger logger;
   Settings settings;
 

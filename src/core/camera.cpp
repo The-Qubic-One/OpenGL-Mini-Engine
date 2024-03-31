@@ -1,19 +1,27 @@
 #include "core/camera.h"
 
+#include "core/global.h"
+
 Camera::Camera() {
   pos = glm::vec3(0.0f, 0.0f, 3.0f);
+  yaw = -90.0f;
+  pitch = 0.0f;
 }
 
 glm::mat4 Camera::view() const {
   return glm::lookAt(pos, pos + front(), up());
 }
 
-void Camera::move(glm::vec3 transf) {
-  pos += transf;
+void Camera::rotate(float yaw, float pitch) {
+  this->yaw += yaw;
+  this->pitch += pitch;
 }
 
 glm::vec3 Camera::front() const {
-  return glm::vec3(0.0f, 0.0f, -1.0f);
+  glm::vec3 direction(cos(glm::radians(yaw)) * cos(glm::radians(pitch)),
+                      sin(glm::radians(pitch)),
+                      sin(glm::radians(yaw)) * cos(glm::radians(pitch)));
+  return glm::normalize(direction);
 }
 
 glm::vec3 Camera::up() const {
