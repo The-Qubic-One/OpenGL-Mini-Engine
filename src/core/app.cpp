@@ -68,6 +68,7 @@ void App::initialize() {
   glfwMakeContextCurrent(window);
   glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
   glfwSetErrorCallback(glfwErrorCallback);
+  glfwSwapInterval(0);  // disable VSYNC
 
   //  GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
