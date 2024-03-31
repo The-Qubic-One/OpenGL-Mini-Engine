@@ -25,9 +25,21 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
   glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window) {
+void App::processInput(GLFWwindow* window) {
   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     glfwSetWindowShouldClose(window, true);
+
+  const float cameraSpeed = 2.5f * Time::deltaTime();  // adjust accordingly
+  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    camera.move(cameraSpeed * camera.front());
+  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    camera.move(-cameraSpeed * camera.front());
+  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    camera.move(-glm::normalize(glm::cross(camera.front(), camera.up())) *
+                cameraSpeed);
+  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    camera.move(glm::normalize(glm::cross(camera.front(), camera.up())) *
+                cameraSpeed);
 }
 
 void glfwErrorCallback(int error, const char* description) {
