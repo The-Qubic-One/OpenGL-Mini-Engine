@@ -16,7 +16,7 @@ class App {
   std::string imgui_log;
   std::string imgui_settings;
 
-  void processInput(GLFWwindow* window);
+  void processCamera(GLFWwindow* window);
 
   void displayPerformanceWindow();
 

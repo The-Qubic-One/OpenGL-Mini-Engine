@@ -26,11 +26,22 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
   glViewport(0, 0, width, height);
 }
 
-void App::processInput(GLFWwindow* window) {
-  using namespace Global;
+void key_callback(GLFWwindow* window,
+                  int key,
+                  int scancode,
+                  int action,
+                  int mods) {
+  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
+    glint_t inverted = Global::cameraMovementEnabled ? GLFW_CURSOR_NORMAL
+                                                     : GLFW_CURSOR_DISABLED;
+    glfwSetInputMode(window, GLFW_CURSOR, inverted);
+    Global::cameraMovementEnabled = !Global::cameraMovementEnabled;
+    Global::firstCameraRecord = true;
+  }
+}
 
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, true);
+void App::processCamera(GLFWwindow* window) {
+  using namespace Global;
 
   const float cameraSpeed = 2.5f * Time::deltaTime();  // adjust accordingly
   if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -47,6 +58,9 @@ void App::processInput(GLFWwindow* window) {
 
 void processMouse(GLFWwindow* window, double xpos, double ypos) {
   using namespace Global;
+
+  if (!cameraMovementEnabled)
+    return;
 
   if (firstCameraRecord) {
     cursorX = xpos;
@@ -91,7 +105,13 @@ void App::initialize() {
   glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
   glfwSetErrorCallback(glfwErrorCallback);
   glfwSwapInterval(0);  // disable VSYNC
-  glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
+  // INPUT
+  glint_t cursor_mode =
+      Global::cameraMovementEnabled ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL;
+  glfwSetInputMode(window, GLFW_CURSOR, cursor_mode);
+
+  glfwSetKeyCallback(window, key_callback);
   glfwSetCursorPosCallback(window, processMouse);
 
   //  GLAD
@@ -172,7 +192,7 @@ bool App::shouldClose() const {
 }
 
 void App::startFrame() {
-  processInput(window);
+  processCamera(window);
 
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplGlfw_NewFrame();
