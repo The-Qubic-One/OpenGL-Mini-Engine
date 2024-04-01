@@ -18,6 +18,10 @@ void key_callback(GLFWwindow* window,
   }
 }
 
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+  Global::fov = std::min(std::max(Global::fov - (float)yoffset, 1.0f), 170.0f);
+}
+
 void processMouse(GLFWwindow* window, double xpos, double ypos) {
   using namespace Global;
 
@@ -43,6 +47,7 @@ void processMouse(GLFWwindow* window, double xpos, double ypos) {
 void Input::init(GLFWwindow* window) {
   glfwSetKeyCallback(window, key_callback);
   glfwSetCursorPosCallback(window, processMouse);
+  glfwSetScrollCallback(window, scroll_callback);
 }
 
 int axisValue(GLFWwindow* window, glint_t positive, glint_t negative) {

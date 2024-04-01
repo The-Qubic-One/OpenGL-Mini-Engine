@@ -137,7 +137,7 @@ int Runtime::startApplication() {
       program.setUniformMat4f("view", Global::camera.view());
 
       proj = glm::perspective(
-          glm::radians(50.0f),
+          glm::radians(Global::fov),
           (float)Global::window_width / (float)Global::window_height, 0.1f,
           100.0f);
       program.setUniformMat4f("projection", proj);
