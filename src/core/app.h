@@ -7,16 +7,12 @@
 #include "settings/settings.h"
 
 void framebufferSizeCallback(GLFWwindow* window, int width, int height);
-
-void processMouse(GLFWwindow* window, double xpos, double ypos);
 void glfwErrorCallback(int error, const char* description);
 
 class App {
   GLFWwindow* window;
   std::string imgui_log;
   std::string imgui_settings;
-
-  void processCamera(GLFWwindow* window);
 
   void displayPerformanceWindow();
 

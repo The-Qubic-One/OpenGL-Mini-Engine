@@ -2,6 +2,7 @@
 
 #include "core/global.h"
 #include "core/util.h"
+#include "core/input.h"
 #include "settings/settings_loader.h"
 
 void App::displayPerformanceWindow() {
@@ -26,58 +27,6 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
   glViewport(0, 0, width, height);
   Global::window_width = width;
   Global::window_height = height;
-}
-
-void key_callback(GLFWwindow* window,
-                  int key,
-                  int scancode,
-                  int action,
-                  int mods) {
-  if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
-    glint_t inverted = Global::cameraMovementEnabled ? GLFW_CURSOR_NORMAL
-                                                     : GLFW_CURSOR_DISABLED;
-    glfwSetInputMode(window, GLFW_CURSOR, inverted);
-    Global::cameraMovementEnabled = !Global::cameraMovementEnabled;
-    Global::firstCameraRecord = true;
-  }
-}
-
-void App::processCamera(GLFWwindow* window) {
-  using namespace Global;
-
-  const float cameraSpeed = 2.5f * Time::deltaTime();  // adjust accordingly
-  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-    camera.move(cameraSpeed * camera.front());
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    camera.move(-cameraSpeed * camera.front());
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    camera.move(-glm::normalize(glm::cross(camera.front(), camera.up())) *
-                cameraSpeed);
-  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    camera.move(glm::normalize(glm::cross(camera.front(), camera.up())) *
-                cameraSpeed);
-}
-
-void processMouse(GLFWwindow* window, double xpos, double ypos) {
-  using namespace Global;
-
-  if (!cameraMovementEnabled)
-    return;
-
-  if (firstCameraRecord) {
-    cursorX = xpos;
-    cursorY = ypos;
-    firstCameraRecord = false;
-    return;
-  }
-
-  float deltaX = xpos - cursorX;
-  float deltaY = ypos - cursorY;
-  cursorX = xpos;
-  cursorY = ypos;
-
-  float sensitivity = 40.0f * Time::deltaTime();
-  camera.rotate(deltaX * sensitivity, -deltaY * sensitivity);
 }
 
 void glfwErrorCallback(int error, const char* description) {
@@ -112,9 +61,7 @@ void App::initialize() {
   glint_t cursor_mode =
       Global::cameraMovementEnabled ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL;
   glfwSetInputMode(window, GLFW_CURSOR, cursor_mode);
-
-  glfwSetKeyCallback(window, key_callback);
-  glfwSetCursorPosCallback(window, processMouse);
+  Input::init(window);
 
   //  GLAD
   if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
@@ -194,7 +141,7 @@ bool App::shouldClose() const {
 }
 
 void App::startFrame() {
-  processCamera(window);
+  Input::processCamera(window);
 
   ImGui_ImplOpenGL3_NewFrame();
   ImGui_ImplGlfw_NewFrame();
