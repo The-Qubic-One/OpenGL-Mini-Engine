@@ -5,7 +5,7 @@
 Camera::Camera() {
   pos = glm::vec3(0.0f, 0.0f, 3.0f);
   yaw = -90.0f;
-  pitch = 0.0f;
+  pitch = -15.0f;
 }
 
 glm::mat4 Camera::view() const {
@@ -14,7 +14,7 @@ glm::mat4 Camera::view() const {
 
 void Camera::rotate(float yaw, float pitch) {
   this->yaw += yaw;
-  this->pitch += pitch;
+  this->pitch = std::min(std::max(this->pitch + pitch, -89.9f), 89.9f);
 }
 
 glm::vec3 Camera::front() const {
