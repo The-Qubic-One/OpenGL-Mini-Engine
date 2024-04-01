@@ -45,18 +45,27 @@ void Input::init(GLFWwindow* window) {
   glfwSetCursorPosCallback(window, processMouse);
 }
 
+int axisValue(GLFWwindow* window, glint_t positive, glint_t negative) {
+  int plus = glfwGetKey(window, positive) == GLFW_PRESS;
+  int minus = glfwGetKey(window, negative) == GLFW_PRESS;
+  return plus - minus;
+}
+
 void Input::processCamera(GLFWwindow* window) {
   using namespace Global;
 
   const float cameraSpeed = 2.5f * Time::deltaTime();  // adjust accordingly
-  if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-    camera.move(cameraSpeed * camera.front());
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-    camera.move(-cameraSpeed * camera.front());
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-    camera.move(-glm::normalize(glm::cross(camera.front(), camera.up())) *
-                cameraSpeed);
-  if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-    camera.move(glm::normalize(glm::cross(camera.front(), camera.up())) *
-                cameraSpeed);
+
+  // up - down
+  camera.move(cameraSpeed *
+              axisValue(window, GLFW_KEY_SPACE, GLFW_KEY_LEFT_SHIFT) *
+              glm::vec3(0.0f, 1.0f, 0.0f));
+
+  // front - back
+  camera.move(cameraSpeed * axisValue(window, GLFW_KEY_W, GLFW_KEY_S) *
+              camera.front());
+
+  // left - right
+  camera.move(cameraSpeed * axisValue(window, GLFW_KEY_A, GLFW_KEY_D) *
+              -glm::normalize(glm::cross(camera.front(), camera.up())));
 }
