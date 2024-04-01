@@ -116,19 +116,12 @@ int Runtime::startApplication() {
     //  TRANSFORM
     glm::ortho(0.0f, 800.0f, 0.0f, 600.0f, 0.1f, 100.0f);
     glm::mat4 model = glm::mat4(1.0f);
-    model =
-        glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-    glm::mat4 proj = glm::perspective(
-        glm::radians(50.0f), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.1f,
-        100.0f);
+    glm::mat4 proj = glm::mat4(1.0f);
 
     // RENDERING LOOP
     program.use();
     program.setUniform1i("texture1", 0);
     program.setUniform1i("texture2", 1);
-    program.setUniformMat4f("model", model);
-    program.setUniformMat4f("view", Global::camera.view());
-    program.setUniformMat4f("projection", proj);
 
     float rot_speed = 0.1f;
 
@@ -137,9 +130,15 @@ int Runtime::startApplication() {
 
       model = glm::rotate(model,
                           glm::radians(rot_speed * 200.0f * Time::deltaTime()),
-                          glm::vec3(0.0f, 0.0f, 1.0f));
+                          glm::vec3(0.0f, 1.0f, 0.0f));
       program.setUniformMat4f("model", model);
       program.setUniformMat4f("view", Global::camera.view());
+
+      proj = glm::perspective(
+          glm::radians(50.0f),
+          (float)Global::window_width / (float)Global::window_height, 0.1f,
+          100.0f);
+      program.setUniformMat4f("projection", proj);
 
       Texture2D::activateUnit(0);
       tex.bind();
