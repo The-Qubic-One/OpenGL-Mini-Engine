@@ -40,7 +40,7 @@ void processMouse(GLFWwindow* window, double xpos, double ypos) {
   cursorX = xpos;
   cursorY = ypos;
 
-  float sensitivity = 40.0f * Time::deltaTime();
+  float sensitivity = 70.0f * Time::deltaTime();
   camera.rotate(deltaX * sensitivity, -deltaY * sensitivity);
 }
 
@@ -59,7 +59,7 @@ int axisValue(GLFWwindow* window, glint_t positive, glint_t negative) {
 void Input::processCamera(GLFWwindow* window) {
   using namespace Global;
 
-  const float cameraSpeed = 2.5f * Time::deltaTime();  // adjust accordingly
+  const float cameraSpeed = 5.0f * Time::deltaTime();  // adjust accordingly
 
   // up - down
   camera.move(cameraSpeed *
